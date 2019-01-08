@@ -1,0 +1,262 @@
+.*=====================================================================*
+.*                                                                     *
+.*  Kurzdokumentation :                                                *
+.*                                                                     *
+.*  Bereich . . . : DLTOLDJRNR                                         *
+.*  Objekt  . . . : DLTOLDJRNP                                         *
+.*  Beschreibung  : Tool: DLTOLDJRNR (Delete old Journal Rcv    ) pnlG *
+.*  Author  . . . : Thomas Raddatz   <thomas.raddatz@tools400.de>      *
+.*  Datum . . . . : 25.07.2001                                         *
+.*                                                                     *
+.*=====================================================================*
+.*                                                                     *
+.*  This software is free software, you can redistribute it and/or     *
+.*  modify it under the terms of the GNU General Public License (GPL)  *
+.*  as published by the Free Software Foundation.                      *
+.*                                                                     *
+.*  See GNU General Public License for details.                        *
+.*          http://www.opensource.org                                  *
+.*          http://www.opensource.org/licenses/gpl-license.html        *
+.*                                                                     *
+.*=====================================================================*
+.*  History:                                                           *
+.*                                                                     *
+.*  Datum       Name          Änderung                                 *
+.*  ----------  ------------  ---------------------------------------  *
+.*                                                                     *
+.*=====================================================================*
+.* >>PRE-COMPILER<<                                                    *
+.*   >>CRTCMD<< CRTPNLGRP    PNLGRP(&LI/DLTOLDJRP) +                   *
+.*                           SRCFILE(&SL/&SF) SRCMBR(&SM);             *
+.*   >>IMPORTANT<<                                                     *
+.*   >>END-IMPORTANT<<                                                 *
+.*   >>EXECUTE<<                                                       *
+.* >>END-PRE-COMPILER<<                                                *
+.*=====================================================================*
+:PNLGRP.
+.*
+:HELP name='DLTOLDJRNR/ALL'.
+:IMHELP name=DLTOLDJRNR.
+:IMHELP name='DLTOLDJRNR/JRN       '.
+:IMHELP name='DLTOLDJRNR/DETACH    '.
+:IMHELP name='DLTOLDJRNR/SAVOPT    '.
+:IMHELP name='DLTOLDJRNR/DLTOPT    '.
+:IMHELP name='DLTOLDJRNR/AGE       '.
+:IMHELP name='DLTOLDJRNR/LOGLVL    '.
+:EHELP.
+.*--------------------------------------------------------------------
+.* Hilfetext für den Befehl
+.*--------------------------------------------------------------------
+:HELP NAME='DLTOLDJRNR'.
+Alte Journalempfänger löschen (DLTOLDJRNR) - Hilfe
+:P.
+Der Befehl DLTOLDJRNR löscht alle veralteten Journalempfänger
+eines angegeben Journals.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilfetext für Schlüsselwort JRN
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/JRN       '.
+Journal - Hilfe
+:XH3.Journal (JRN)
+:P.
+Name des Journals angeben, dessen veralteten Journalempfänger
+gelöscht werden sollen.
+.*
+:IMHELP name='COM/REQPARM'.
+.*
+:PARML.
+:PT.:PV.Journalname:EPV.
+:PD.Name des Journals.
+:EPARML.
+:P.
+Mögliche Bibliothekswerte sind:
+.*
+:PARML.
+:PT.:PK DEF.*LIBL:EPK.
+:PD.Journal wird über die Bibliotheksliste gesucht.
+:PT.:PV.*CURLIB:EPV.
+:PD.Journal befindet sich in der aktuellen Bibliothek des Jobs.
+:PT.:PV.Bibliothek:EPV.
+:PD.Name der Bibliothek, welche das Journal enthält.
+:EPARML.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilfetext für Schlüsselwort DETACH
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/DETACH    '.
+Akt. Journalempfänger abhängen - Hilfe
+:XH3.Akt. Journalempfänger abhängen (DETACH)
+:P.
+Angeben, ob der aktuelle Journalempfänger abgehangen werden soll.
+.*
+:IMHELP name='COM/OPTPARM'.
+.*
+:PARML.
+:PT.:PK DEF.*NO:EPK.
+:PD.Der aktuelle Journalempfänger wird nicht abgehangen.
+:PT.:PV.*YES:EPV.
+:PD.Der aktuelle Journalempfänger wird abgehangen.
+:EPARML.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilfetext für Schlüsselwort SAVOPT
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/SAVOPT    '.
+Sicherungsoption - Hilfe
+:XH3.Sicherungsoption (SAVOPT)
+:P.
+Angeben, ob nur die gesicherten Journalempfänger gelöscht werden
+sollen.
+.*
+:IMHELP name='COM/OPTPARM'.
+.*
+:PARML.
+:PT.:PK DEF.*SAVEDONLY:EPK.
+:PD.Es werden nur die gesicherten Journalempfänger gelöscht.
+:PT.:PV.*ALL:EPV.
+:PD.Es werden alle Journalempfänger gelöscht.
+:EPARML.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilfetext für Schlüsselwort DLTOPT
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/DLTOPT    '.
+Option - Hilfe
+:XH3.Option (DLTOPT)
+:P.
+Angeben, ob zusätzliche Prüfungen durchgeführt werden sollen, bevor
+der Journalempfänger gelöscht wird.
+.*
+:P.
+Die Angaben zu den unten aufgeführen Sonderwerten (*NONE, *IGNTGTRCV,
+*IGNINQMSG und *IGNEXITPGM) wurden der Online-Hilfe des Befehls
+DLTJRNRCV V4R4 entnommen und müssen nicht zwangsläufig mit
+den Nachfolgeversionen des OS/400 übereinstimmen.
+.*
+:P.
+Im Zweifelsfall sollte die aktuelle Online-Hilfe des Befehls
+DLTJRNRCV durchgesehen werden.
+.*
+:IMHELP name='COM/OPTPARM'.
+.*
+:PARML.
+:PT.:PK DEF.*NONE:EPK.
+:PD.Das Löschen des Journalempfängers soll versucht werden, ohne die
+Schutzprüfungen zu ignorieren, die vor dem Löschen eines
+Journalempfängers durchgeführt werden.
+.*
+:PT.:PV.*IGNTGTRCV:EPV.
+:PD.Das System überprüft nicht, ob alle diesem Journal zugeordneten
+fernen Journale, die sich direkt hinter diesem Journal auf einem
+Zielsystem befinden, vollständige Kopien dieses Journalempfängers
+haben. Die Löschoperation wird durchgeführt, auch wenn eines dieser
+fernen Journale noch keine vollständige Kopie hat. Diese
+Schutzmaßnahme für einen Journalempfänger fängt an, wenn das ferne
+Journal mit der API QjoAddRemoteJournal hinzugefügt wurde und endet,
+wenn das Journal mit der API QjoRemoveRemoteJournal entfernt oder
+wenn es gelöscht wird. Weitere Informationen über APIs enthält das
+Handbuch System API Reference, IBM Form SC41-5801.
+.*
+:PT.:PV.*IGNINQMSG:EPV.
+:PD.Anfragenachricht ignorieren. Anfragenachricht CPA7025 wird nicht
+angezeigt, auch wenn dieser Empfänger noch nicht vollständig
+gesichert wurde (beispielsweise wenn eine Sicherung durchgeführt
+wurde, nachdem der Empfänger abgehängt wurde). Die Anfragenachricht
+CPA705E wird ebenfalls nicht angezeigt, auch wenn der Empfänger an
+ein fernes Journal angehängt ist. Die Löschoperation wird
+durchgeführt.
+.*
+:PT.:PV.*IGNEXITPGM:EPV.
+:PD.Benutzerausgangsprogramme ignorieren. Benutzerausgangsprogramme, die
+für Ausgangspunkt QIBM_QJO_DLT_JRNRCV registriert sind, werden nicht
+aufgerufen und beeinflussen nicht die Entscheidung, ob dieser
+Journalempfänger gelöscht werden kann.
+:EPARML.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilfetext für Schlüsselwort AGE
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/AGE       '.
+Alter in Tagen - Hilfe
+:XH3.Alter in Tagen (AGE)
+:P.
+Angeben, Alter in Tagen ab dem die Journalempfänger gelöscht
+werden sollen.
+.*
+:IMHELP name='COM/REQPARM'.
+.*
+:PARML.
+:PT.:PV.Anzahl Tage:EPV.
+:PD.Alter in Tagen.
+:EPARML.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilfetext für Schlüsselwort LOGLVL
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/LOGLVL    '.
+Log level - Hilfe
+:XH3.Log Level (LOGLVL)
+:P.
+Gibt an, wie ausführlich die Log Ausgabe sein soll.
+.*
+:IMHELP name='COM/OPTPARM'.
+.*
+:PARML.
+:PT.:PK.*NONE:EPK.
+:PD.Keine Log Ausgabe.
+:PT.:PV.*BASIC:EPV.
+:PD.Log Ausgabe von reinen Informationsnachrichten.
+:PT.:PV.*VERBOSE:EPV.
+:PD.Log Ausgabe von Debug Informationen. Dieser Log Level
+wird im Fall von Problemen mit DLTOLDJRNR empfohlen.
+:EPARML.
+.*
+:EHELP.
+.*
+.*====================================================================
+.*  Textbausteine, die an mehreren Stellen im Hilfetext
+.*  verwendet werden.
+.*====================================================================
+
+.*=====================================
+.*  Erforderlicher Parameter
+.*=====================================
+:HELP NAME='COM/REQPARM'.
+:P.
+Dieser Parameter ist erforderlich.
+:P.
+:IMHELP name='COM/VALUES'.
+:EHELP.
+
+.*=====================================
+.*  Optionaler Parameter
+.*=====================================
+:HELP NAME='COM/OPTPARM'.
+:P.
+Dieser Parameter ist optional.
+:P.
+:IMHELP name='COM/VALUES'.
+:EHELP.
+
+.*=====================================
+.*  Werteliste
+.*=====================================
+:HELP NAME='COM/VALUES'.
+:P.
+Mögliche Werte sind:
+:EHELP.
+.*
+:EPNLGRP.

@@ -1,0 +1,160 @@
+     /* =================================================================== */
+     /*                                                                     */
+     /*  Documentation:                                                     */
+     /*                                                                     */
+     /*  Utility . . . : DLTOLDJRNR                                         */
+     /*  Object  . . . : A_INSTALL  (PGM)                                   */
+     /*  Source member : A_INSTALL                                          */
+     /*  Source type . : CLLE                                               */
+     /*  Description   : DLTOLDJRNR - Installer                             */
+     /*  Author  . . . : Thomas Raddatz   <thomas.raddatz@tools400.de>      */
+     /*  Created . . . :                                                    */
+     /*                                                                     */
+     /* =================================================================== */
+     /*                                                                     */
+     /*  This software is free software, you can redistribute it and/or     */
+     /*  modify it under the terms of the GNU General Public License (GPL)  */
+     /*  as published by the Free Software Foundation.                      */
+     /*                                                                     */
+     /*  See GNU General Public License for details.                        */
+     /*          http://www.opensource.org                                  */
+     /*          http://www.opensource.org/licenses/gpl-license.html        */
+     /*                                                                     */
+     /* =================================================================== */
+     /*  History:                                                           */
+     /*                                                                     */
+     /*  Datum       Name          Änderung                                 */
+     /*  ----------  ------------  ---------------------------------------  */
+     /*                                                                     */
+     /* =================================================================== */
+     /*   >>PRE-COMPILER<<                                                  */
+     /*     >>CRTCMD<<    CRTBNDCL  PGM(QTEMP/&OB) +                        */
+     /*                             SRCFILE(&SL/&SF) SRCMBR(&SM);           */
+     /*     >>IMPORTANT<<                                                   */
+     /*       >>PARM<<    OPTION(*EVENTF);                                  */
+     /*     >>END-IMPORTANT<<                                               */
+     /*     >>EXECUTE<<                                                     */
+     /*     >>CMD<<       CALL   PGM(QTEMP/A_INSTALL) +                     */
+     /*                   PARM('*CURRENT' '&SF' '&LI' 'GER');               */
+     /*     >>CMD<<       DLTPGM PGM(QTEMP/A_INSTALL);                      */
+     /*   >>END-PRE-COMPILER<<                                              */
+     /* =================================================================== */
+             PGM        PARM(&TGTRLS &SRCFILE &TOLIB &LNG)
+
+             DCL        VAR(&TGTRLS   ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&SRCFILE  ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&TOLIB    ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&LNG      ) TYPE(*CHAR) LEN( 3)
+
+             DCL        VAR(&SRCLIB   ) TYPE(*CHAR) LEN(10)
+
+             DCL        VAR(&CRTMSGF  ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&MSGF     ) TYPE(*CHAR) LEN(10) VALUE('DLTOLDJRNR')
+             DCL        VAR(&PNLGRP   ) TYPE(*CHAR) LEN(10)
+             DCL        VAR(&CMD      ) TYPE(*CHAR) LEN(10)
+
+             CHGVAR     VAR(&SRCLIB) VALUE(&TOLIB   )
+
+     /* -------------------------------- */
+     /*  Delete old objects (prv. vers.) */
+     /* -------------------------------- */
+             DLTPGM     PGM(&TOLIB/DLTOLDJRR1)
+             MONMSG     MSGID(CPF2105)
+
+             DLTPNLGRP  PNLGRP(&TOLIB/DLTOLDJRPE)
+             MONMSG     MSGID(CPF2105)
+
+     /* -------------------------------- */
+     /*  Delete old objects              */
+     /* -------------------------------- */
+             DLTCMD     CMD(&TOLIB/DLTOLDJRNR)
+             MONMSG     MSGID(CPF2105)
+
+             DLTPNLGRP  PNLGRP(&TOLIB/DLTOLDJRP)
+             MONMSG     MSGID(CPF2105)
+
+             DLTMOD     MODULE(&TOLIB/DLTOLDJRR1)
+             MONMSG     MSGID(CPF2105)
+
+             DLTMOD     MODULE(&TOLIB/DLTOLDJRR2)
+             MONMSG     MSGID(CPF2105)
+
+             DLTPGM     PGM(&TOLIB/DLTOLDJRNR)
+             MONMSG     MSGID(CPF2105)
+
+             DLTMSGF    MSGF(&TOLIB/&MSGF)
+             MONMSG     MSGID(CPF2105)
+
+             RMVMSG     PGMQ(*SAME (*)) CLEAR(*ALL)
+
+     /* -------------------------------- */
+     /*  Create message file             */
+     /* -------------------------------- */
+             IF         COND(&LNG *EQ 'ENG') THEN(DO)
+                CHGVAR     VAR(&CRTMSGF) VALUE('A_MSG_ENG')
+                CHGVAR     VAR(&PNLGRP ) VALUE('DLTOLDJRPE')
+                CHGVAR     VAR(&CMD    ) VALUE('DLTOLDJRNE')
+             ENDDO
+             ELSE       CMD(DO)
+                CHGVAR     VAR(&CRTMSGF) VALUE('A_MSG_GER')
+                CHGVAR     VAR(&PNLGRP ) VALUE('DLTOLDJRPG')
+                CHGVAR     VAR(&CMD    ) VALUE('DLTOLDJRNG')
+             ENDDO
+
+             CRTMSGF    MSGF(&TOLIB/&MSGF) +
+                          TEXT('Delete Old Journal Receivers              ')
+
+             CRTCLPGM   PGM(QTEMP/&CRTMSGF) +
+                          SRCFILE(&SRCLIB/&SRCFILE) SRCMBR(*PGM) +
+                          OPTION(*LSTDBG) +
+                          TGTRLS(&TGTRLS)
+             DLTSPLF    FILE(&CRTMSGF  ) JOB(*) SPLNBR(*LAST)
+             MONMSG     MSGID(CPF0000)
+
+             CALL       PGM(QTEMP/&CRTMSGF) PARM(&TOLIB)
+             DLTPGM     PGM(QTEMP/&CRTMSGF)
+
+     /* -------------------------------- */
+     /*  Create objects                  */
+     /* -------------------------------- */
+             CRTRPGMOD  MODULE(&TOLIB/DLTOLDJRR1) +
+                          SRCFILE(&SRCLIB/&SRCFILE) SRCMBR(*MODULE) +
+                          DBGVIEW(*LIST) TRUNCNBR(*NO) +
+                          TGTRLS(&TGTRLS)
+             DLTSPLF    FILE(DLTOLDJRR1) JOB(*) SPLNBR(*LAST)
+             MONMSG     MSGID(CPF0000)
+
+             CRTRPGMOD  MODULE(&TOLIB/DLTOLDJRR2) +
+                          SRCFILE(&SRCLIB/&SRCFILE) SRCMBR(*MODULE) +
+                          DBGVIEW(*LIST) TRUNCNBR(*NO) +
+                          TGTRLS(&TGTRLS)
+             DLTSPLF    FILE(DLTOLDJRR2) JOB(*) SPLNBR(*LAST)
+             MONMSG     MSGID(CPF0000)
+
+             CRTPGM     PGM(&TOLIB/DLTOLDJRNR) +
+                          MODULE(&TOLIB/DLTOLDJRR1 +
+                                 &TOLIB/DLTOLDJRR2) TEXT(*ENTMODTXT) +
+                          ENTMOD(&TOLIB/DLTOLDJRR1) ACTGRP(*NEW) +
+                          DETAIL(*BASIC) USRPRF(*USER) +
+                          TGTRLS(&TGTRLS)
+             DLTSPLF    FILE(DLTOLDJRNR) JOB(*) SPLNBR(*LAST)
+             MONMSG     MSGID(CPF0000)
+
+             CRTPNLGRP  PNLGRP(&TOLIB/DLTOLDJRP) SRCFILE(&SRCLIB/&SRCFILE) +
+                          SRCMBR(&PNLGRP)
+             DLTSPLF    FILE(DLTOLDJRP) JOB(*) SPLNBR(*LAST)
+             MONMSG     MSGID(CPF0000)
+
+             CRTCMD     CMD(&TOLIB/DLTOLDJRNR) PGM(&TOLIB/DLTOLDJRNR) +
+                          SRCFILE(&SRCLIB/&SRCFILE) SRCMBR(&CMD) +
+                          HLPPNLGRP(&TOLIB/DLTOLDJRP) HLPID(DLTOLDJRNR)
+             DLTSPLF    FILE(&CMD) JOB(*) SPLNBR(*LAST)
+             MONMSG     MSGID(CPF0000)
+
+     /* -------------------------------- */
+     /*  Delete obsolete objects         */
+     /* -------------------------------- */
+             DLTMOD     MODULE(&TOLIB/DLTOLDJRR1)
+             DLTMOD     MODULE(&TOLIB/DLTOLDJRR2)
+
+             ENDPGM

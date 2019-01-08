@@ -1,0 +1,266 @@
+.*=====================================================================*
+.*                                                                     *
+.*  Kurzdokumentation :                                                *
+.*                                                                     *
+.*  Bereich . . . : DLTOLDJRNR                                         *
+.*  Objekt  . . . : DLTOLDJRNP                                         *
+.*  Beschreibung  : Tool: DLTOLDJRNR (Delete old Journal Rcv    ) pnlG *
+.*  Author  . . . : Thomas Raddatz   <thomas.raddatz@tools400.de>      *
+.*  Datum . . . . : 25.07.2001                                         *
+.*                                                                     *
+.*=====================================================================*
+.*                                                                     *
+.*  This software is free software, you can redistribute it and/or     *
+.*  modify it under the terms of the GNU General Public License (GPL)  *
+.*  as published by the Free Software Foundation.                      *
+.*                                                                     *
+.*  See GNU General Public License for details.                        *
+.*          http://www.opensource.org                                  *
+.*          http://www.opensource.org/licenses/gpl-license.html        *
+.*                                                                     *
+.*=====================================================================*
+.*  History:                                                           *
+.*                                                                     *
+.*  Datum       Name          Änderung                                 *
+.*  ----------  ------------  ---------------------------------------  *
+.*                                                                     *
+.*=====================================================================*
+.* >>PRE-COMPILER<<                                                    *
+.*   >>CRTCMD<< CRTPNLGRP    PNLGRP(&LI/DLTOLDJRP) +                   *
+.*                           SRCFILE(&SL/&SF) SRCMBR(&SM);             *
+.*   >>IMPORTANT<<                                                     *
+.*   >>END-IMPORTANT<<                                                 *
+.*   >>EXECUTE<<                                                       *
+.* >>END-PRE-COMPILER<<                                                *
+.*=====================================================================*
+:PNLGRP.
+.*
+:HELP name='DLTOLDJRNR/ALL'.
+:IMHELP name=DLTOLDJRNR.
+:IMHELP name='DLTOLDJRNR/JRN       '.
+:IMHELP name='DLTOLDJRNR/DETACH    '.
+:IMHELP name='DLTOLDJRNR/SAVOPT    '.
+:IMHELP name='DLTOLDJRNR/DLTOPT    '.
+:IMHELP name='DLTOLDJRNR/AGE       '.
+:IMHELP name='DLTOLDJRNR/LOGLVL    '.
+:EHELP.
+.*--------------------------------------------------------------------
+.* Hilfetext für den Befehl
+.*--------------------------------------------------------------------
+:HELP NAME='DLTOLDJRNR'.
+Delete old Journal Receiver (DLTOLDJRNR) - Help
+:P.
+The DLTOLDJRNR deletes all old journal receivers of a
+journal. A journal receiver is considered as old if
+its age is older or egal the age specified.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilftext für Schlüsselwort JRN
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/JRN       '.
+Journal - Help
+:XH3.Journal (JRN)
+:P.
+Specifies the name and library of the journal whose receivers
+are deleted.
+.*
+:IMHELP name='COM/REQPARM'.
+.*
+:PARML.
+:PT.:PV.journal-receiver-name:EPV.
+:PD.Specify the name and library of the journal whose receivers
+are deleted.
+:EPARML.
+:P.
+The possible library values are:
+.*
+:PARML.
+:PT.:PK DEF.*LIBL:EPK.
+:PD.All libraries in the job's library list are searched
+until the first match is found.
+:PT.:PV.*CURLIB:EPV.
+:PD.The current library for the job is searched.  If no
+library is specified as the current library for the
+job, the QGPL library is used.
+:PT.:PV.library-name:EPV.
+:PD.Specify the name of the library to be searched.
+:EPARML.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilfetext für Schlüsselwort DETACH
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/DETACH    '.
+Detach curr. journal reveicer - Help
+:XH3.Akt. Detach curr. journal reveicer (DETACH)
+:P.
+Specifies whether the current journal receiver is being detached and
+replaced by a new one or not.
+.*
+:IMHELP name='COM/OPTPARM'.
+.*
+:PARML.
+:PT.:PK DEF.*NO:EPK.
+:PD.The current journal receiver is not being detached and replaced.
+:PT.:PV.*YES:EPV.
+:PD.The current journal receiver is being detached and replaced by
+a new one.
+:EPARML.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilfetext für Schlüsselwort SAVOPT
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/SAVOPT    '.
+Save option - Help
+:XH3.Save option (SAVOPT)
+:P.
+Specifies if a journal receiver must be saved before it can be
+deleted.
+.*
+:IMHELP name='COM/OPTPARM'.
+.*
+:PARML.
+:PT.:PK DEF.*SAVEDONLY:EPK.
+:PD.A journal receiver must be saved before it can be deleted.
+:PT.:PV.*ALL:EPV.
+:PD.All journal receiver that match the criteria are deleted.
+:EPARML.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilfetext für Schlüsselwort DLTOPT
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/DLTOPT    '.
+Option - Help
+:XH3.Option (DLTOPT)
+:P.
+Specifies whether additional checking should not be done
+before a journal receiver is deleted.
+.*
+:P.
+Please check the online help text of the DLTJRNRCV command to
+make sure that the help text of the DLTOLDJRNR command is still
+in sync with the current version of OS/400.
+.*
+:IMHELP name='COM/OPTPARM'.
+.*
+:PARML.
+:PT.:PK DEF.*NONE:EPK.
+:PD.The journal receiver delete is attempted without
+ignoring any of the protective checks which are done
+before a journal receiver is deleted.
+.*
+:PT.:PV.*IGNTGTRCV:EPV.
+:PD.The system does not verify that all remote journals
+associated with this journal that are immediately
+downstream on a target system have full copies of this
+journal receiver.  The delete operation continues even
+if any of those remote journals does not have a full
+copy.  This protection on a journal receiver only
+applies beginning when the remote journal was added
+using the Add Remote Journal (QjoAddRemoteJournal)
+API, until it is removed using the Remove Remote
+Journal (QjoRemoveRemoteJournal) API, or until the
+journal is deleted.  For more information about APIs,
+see the System API Reference, SC41-5801.
+.*
+:PT.:PV.*IGNINQMSG:EPV.
+:PD.Ignore inquiry message.  Inquiry message CPA7025 is
+not presented to the user, even if this receiver has
+not been fully saved (for example, a save after the
+receiver was detached).  Also, inquiry message CPA705E
+is not presented to the user even if the receiver is
+attached to a remote journal.  The delete operation
+continues.
+.*
+:PT.:PV.*IGNEXITPGM:EPV.
+:PD.Ignore user exit programs.  Any user exit programs
+registered for exit point QIBM_QJO_DLT_JRNRCV are not
+called and not included in the decision as to whether
+this journal receiver can be deleted.
+:EPARML.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilfetext für Schlüsselwort AGE
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/AGE       '.
+Agre (days) - Help
+:XH3.Agre (days) (AGE)
+:P.
+Specifies the age counted in days that a journal receiver must
+have until it is considered to be old.
+.*
+:IMHELP name='COM/REQPARM'.
+.*
+:PARML.
+:PT.:PV.Age-in-days:EPV.
+:PD.Age of the journal receiver specified in days.
+:EPARML.
+.*
+:EHELP.
+.*
+.*--------------------------------------------------------------------
+.* Hilfetext für Schlüsselwort LOGLVL
+.*--------------------------------------------------------------------
+:HELP name='DLTOLDJRNR/LOGLVL    '.
+Log level - Help
+:XH3.Log Level (LOGLVL)
+:P.
+Specifies the log level of the printed log output.
+.*
+:IMHELP name='COM/OPTPARM'.
+.*
+:PARML.
+:PT.:PK.*NONE:EPK.
+:PD.No log information is printed.
+:PT.:PV.*BASIC:EPV.
+:PD.Prints basic information messages.
+:PT.:PV.*VERBOSE:EPV.
+:PD.Prints detailed debug information. This log level
+is recommended in case of problems using DLTOLDJRNR.
+:EPARML.
+.*
+:EHELP.
+.*
+.*====================================================================
+.*  Textbausteine, die an mehreren Stellen im Hilfetext
+.*  verwendet werden.
+.*====================================================================
+
+.*=====================================
+.*  Erforderlicher Parameter
+.*=====================================
+:HELP NAME='COM/REQPARM'.
+:P.
+This is a required parameter.
+:P.
+:IMHELP name='COM/VALUES'.
+:EHELP.
+
+.*=====================================
+.*  Optionaler Parameter
+.*=====================================
+:HELP NAME='COM/OPTPARM'.
+:P.
+This is an optional parameter.
+:P.
+:IMHELP name='COM/VALUES'.
+:EHELP.
+
+.*=====================================
+.*  Werteliste
+.*=====================================
+:HELP NAME='COM/VALUES'.
+:P.
+The possible values are:
+:EHELP.
+.*
+:EPNLGRP.
