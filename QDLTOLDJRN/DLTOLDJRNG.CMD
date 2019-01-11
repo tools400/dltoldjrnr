@@ -32,10 +32,9 @@
 /*                           SRCMBR(&SM);                              */
 /*                                                                     */
 /*   >>COMPILE<<                                                       */
-/*     >>PARM<< PGM(*LIBL/DLTOLDJRNR);                                 */
-/*     >>PARM<< HLPPNLGRP(*LIBL/DLTOLDJRP );                           */
+/*     >>PARM<< PGM(&LI/DLTOLDJRNR);                                   */
+/*     >>PARM<< HLPPNLGRP(&LI/DLTOLDJRP );                             */
 /*     >>PARM<< HLPID(DLTOLDJRNR);                                     */
-/*     >>PARM<< PRDLIB(&LI);                                           */
 /*   >>END-COMPILE<<                                                   */
 /*                                                                     */
 /*   >>EXECUTE<<                                                       */

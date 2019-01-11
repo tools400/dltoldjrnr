@@ -145,9 +145,12 @@
              DLTSPLF    FILE(DLTOLDJRP) JOB(*) SPLNBR(*LAST)
              MONMSG     MSGID(CPF0000)
 
-             CRTCMD     CMD(&TOLIB/DLTOLDJRNR) PGM(&TOLIB/DLTOLDJRNR) +
-                          SRCFILE(&SRCLIB/&SRCFILE) SRCMBR(&CMD) +
-                          HLPPNLGRP(&TOLIB/DLTOLDJRP) HLPID(DLTOLDJRNR)
+             CRTCMD     CMD(&TOLIB/DLTOLDJRNR)        +
+                          PGM(&TOLIB/DLTOLDJRNR)      +
+                          SRCFILE(&SRCLIB/&SRCFILE)   +
+                          SRCMBR(&CMD)                +
+                          HLPPNLGRP(&TOLIB/DLTOLDJRP) +
+                          HLPID(DLTOLDJRNR)
              DLTSPLF    FILE(&CMD) JOB(*) SPLNBR(*LAST)
              MONMSG     MSGID(CPF0000)
 

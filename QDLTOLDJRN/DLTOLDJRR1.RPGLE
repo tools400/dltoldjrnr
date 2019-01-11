@@ -207,13 +207,13 @@
        // ***************************************************************
      D cErrMsg         C                   const('Programm fehlerhaft beendet.')
 
-     D qCPFMSG         DS
-     D  qCPFMSG_file                 10A   inz('QCPFMSG')
-     D  qCPFMSG_lib                  10A   inz('QSYS'   )
+     D qCPFMSG         DS                  qualified
+     D  name                         10A   inz('QCPFMSG')
+     D  lib                          10A   inz('QSYS'   )
 
-     D qJRNMSG         DS
-     D  qJRNMSG_file                 10A   inz('DLTOLDJRNR')
-     D  qJRNMSG_lib                  10A   inz('*LIBL'  )
+     D qJRNMSG         DS                  qualified
+     D  name                         10A   inz('DLTOLDJRNR')
+     D  lib                          10A   inz
 
        // ***************************************************************
        //  *ENTRY - Parameter defined as global
@@ -239,6 +239,9 @@
      d  cmdStrSyntax           7      7A
      d  msgRtvKey              8     11A
      d  res_01                12     20A
+
+      /DEFINE SDS_EXTENDED
+      /COPY QCRTMSGDS,SDS
 
        // ***************************************************************
        //              EXECUTABLE CODE STARTS HERE
@@ -391,6 +394,9 @@
 
      D LEFT_MARGIN     S             18A   inz
       /FREE
+
+       qJRNMSG.name = 'DLTOLDJRNR';
+       qJRNMSG.lib = sds.pgmLib;
 
        // -----------------------------------------
        //  Initialize counter

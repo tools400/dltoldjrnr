@@ -51,7 +51,7 @@
       appblddate CDATA #REQUIRED
      >
      ]>
-<upload  appname="DLTOLDJRNR"  appauthor="Thomas Raddatz"  appblddate=" 1/08/2019">
+<upload  appname="DLTOLDJRNR"  appauthor="Thomas Raddatz"  appblddate=" 1/11/2019">
 <install_instructions><![CDATA[
      *----------------------------------------------------------------      ------
      *  1. Upload entire XML to your AS/400 to a source file 112 long, into any mbr
@@ -1438,9 +1438,12 @@ srccssid=  "00273">
              DLTSPLF    FILE(DLTOLDJRP) JOB(*) SPLNBR(*LAST)
              MONMSG     MSGID(CPF0000)
 
-             CRTCMD     CMD(&TOLIB/DLTOLDJRNR) PGM(&TOLIB/DLTOLDJRNR) +
-                          SRCFILE(&SRCLIB/&SRCFILE) SRCMBR(&CMD) +
-                          HLPPNLGRP(&TOLIB/DLTOLDJRP) HLPID(DLTOLDJRNR)
+             CRTCMD     CMD(&TOLIB/DLTOLDJRNR)        +
+                          PGM(&TOLIB/DLTOLDJRNR)      +
+                          SRCFILE(&SRCLIB/&SRCFILE)   +
+                          SRCMBR(&CMD)                +
+                          HLPPNLGRP(&TOLIB/DLTOLDJRP) +
+                          HLPID(DLTOLDJRNR)
              DLTSPLF    FILE(&CMD) JOB(*) SPLNBR(*LAST)
              MONMSG     MSGID(CPF0000)
 
@@ -1691,7 +1694,7 @@ Installing DLTOLDJRNG  type CMD - in progress.
 <mbr
 mbrname =  "DLTOLDJRNG"
 mbrtype =  "CMD       "
-mbrtext =  "Tool: DLTOLDJRNR (Delete old Journal Rcv    ) Ger "
+mbrtext =  "Delete Old Journal Receivers                      "
 srcfile =  "QDLTOLDJRN"
 srclib  =  "selected  "
 srclen  =  "00112"
@@ -1731,10 +1734,9 @@ srccssid=  "00273">
 /*                           SRCMBR(&SM);                              */
 /*                                                                     */
 /*   >>COMPILE<<                                                       */
-/*     >>PARM<< PGM(*LIBL/DLTOLDJRR1);                                 */
-/*     >>PARM<< HLPPNLGRP(*LIBL/DLTOLDJRP );                           */
+/*     >>PARM<< PGM(&LI/DLTOLDJRNR);                                   */
+/*     >>PARM<< HLPPNLGRP(&LI/DLTOLDJRP );                             */
 /*     >>PARM<< HLPID(DLTOLDJRNR);                                     */
-/*     >>PARM<< PRDLIB(&LI);                                           */
 /*   >>END-COMPILE<<                                                   */
 /*                                                                     */
 /*   >>EXECUTE<<                                                       */
@@ -1837,7 +1839,7 @@ Installing DLTOLDJRNE  type CMD - in progress.
 <mbr
 mbrname =  "DLTOLDJRNE"
 mbrtype =  "CMD       "
-mbrtext =  "Tool: DLTOLDJRNR (Delete old Journal Rcv    ) Eng "
+mbrtext =  "Delete Old Journal Receivers                      "
 srcfile =  "QDLTOLDJRN"
 srclib  =  "selected  "
 srclen  =  "00112"
@@ -1877,10 +1879,9 @@ srccssid=  "00273">
 /*                           SRCMBR(&SM);                              */
 /*                                                                     */
 /*   >>COMPILE<<                                                       */
-/*     >>PARM<< PGM(*LIBL/DLTOLDJRR1);                                 */
-/*     >>PARM<< HLPPNLGRP(*LIBL/DLTOLDJRP );                           */
+/*     >>PARM<< PGM(&LI/DLTOLDJRNR);                                   */
+/*     >>PARM<< HLPPNLGRP(&LI/DLTOLDJRP );                             */
 /*     >>PARM<< HLPID(DLTOLDJRNR);                                     */
-/*     >>PARM<< PRDLIB(&LI);                                           */
 /*   >>END-COMPILE<<                                                   */
 /*                                                                     */
 /*   >>EXECUTE<<                                                       */
@@ -1983,7 +1984,7 @@ Installing DLTOLDJRPG  type PNLGRP - in progress.
 <mbr
 mbrname =  "DLTOLDJRPG"
 mbrtype =  "PNLGRP    "
-mbrtext =  "Tool: DLTOLDJRNR (Delete old Journal Rcv    ) Ger "
+mbrtext =  "Delete Old Journal Receivers                      "
 srcfile =  "QDLTOLDJRN"
 srclib  =  "selected  "
 srclen  =  "00112"
@@ -2260,7 +2261,7 @@ Installing DLTOLDJRPE  type PNLGRP - in progress.
 <mbr
 mbrname =  "DLTOLDJRPE"
 mbrtype =  "PNLGRP    "
-mbrtext =  "Tool: DLTOLDJRNR (Delete old Journal Rcv    ) Eng "
+mbrtext =  "Delete Old Journal Receivers                      "
 srcfile =  "QDLTOLDJRN"
 srclib  =  "selected  "
 srclen  =  "00112"
@@ -2547,64 +2548,66 @@ srclib  =  "selected  "
 srclen  =  "00112"
 srccssid=  "00273">
 <copysrc><![CDATA[
-      *=====================================================================*
-      *                                                                     *
-      *  Kurzdokumentation :                                                *
-      *                                                                     *
-      *  Bereich . . . : DLTOLDJRNR                                         *
-      *  Objekt  . . . : DLTOLDJRR1                                         *
-      *  Beschreibung  : Tool: DLTOLDJRNR (Delete old Journal Rcv    ) CPP  *
-      *  Author  . . . : Thomas Raddatz   <thomas.raddatz@tools400.de>      *
-      *  Datum . . . . : 25.07.2001                                         *
-      *                                                                     *
-      *=====================================================================*
-      *                                                                     *
-      *  This software is free software, you can redistribute it and/or     *
-      *  modify it under the terms of the GNU General Public License (GPL)  *
-      *  as published by the Free Software Foundation.                      *
-      *                                                                     *
-      *  See GNU General Public License for details.                        *
-      *          http://www.opensource.org                                  *
-      *          http://www.opensource.org/licenses/gpl-license.html        *
-      *                                                                     *
-      *=====================================================================*
-      *  History:                                                           *
-      *                                                                     *
-      *  Datum       Name          Änderung                                 *
-      *  ----------  ------------  ---------------------------------------  *
-      *  10.01.2003  Th.Raddatz    Removed special character § from source. *
-      *                                                                     *
-      *  16.12.2003  Th.Raddatz    Added mesage files.                      *
-      *                                                                     *
-      *  20.05.2008  Th.Raddatz    Changed parameter 'AGE' to mandatory.    *
-      *                                                                     *
-      *  24.05.2012  Th.Raddatz    Fixed "Object not found" error when      *
-      *                            'curRcvNme' is blanks when searching     *
-      *                            the oldest receiver and having reached   *
-      *                            the very first receiver of the journal.  *
-      *                                                                     *
-      *=====================================================================*
-      * >>PRE-COMPILER<<                                                    *
-      *   >>CRTCMD<< CRTRPGMOD    MODULE(&LI/&OB) +                         *
-      *                           SRCFILE(&SL/&SF) SRCMBR(&SM);             *
-      *   >>IMPORTANT<<                                                     *
-      *     >>PARM<< TRUNCNBR(*NO);                                         *
-      *     >>PARM<< DBGVIEW(*LIST);                                        *
-      *   >>END-IMPORTANT<<                                                 *
-      *   >>EXECUTE<<                                                       *
-      *   >>CMD<<    CRTPGM       PGM(&LI/DLTOLDJRNR) +                     *
-      *                           MODULE(&LI/&OB  +                         *
-      *                                  &LI/DLTOLDJRR2) +                  *
-      *                           DETAIL(*BASIC) +                          *
-      *                           ACTGRP(*NEW);                             *
-      * >>END-PRE-COMPILER<<                                                *
-      *=====================================================================*
+       //=====================================================================*
+       //                                                                     *
+       //  Kurzdokumentation :                                                *
+       //                                                                     *
+       //  Bereich . . . : DLTOLDJRNR                                         *
+       //  Objekt  . . . : DLTOLDJRR1                                         *
+       //  Beschreibung  : Tool: DLTOLDJRNR (Delete old Journal Rcv    ) CPP  *
+       //  Author  . . . : Thomas Raddatz   <thomas.raddatz@tools400.de>      *
+       //  Datum . . . . : 25.07.2001                                         *
+       //                                                                     *
+       //=====================================================================*
+       //                                                                     *
+       //  This software is free software, you can redistribute it and/or     *
+       //  modify it under the terms of the GNU General Public License (GPL)  *
+       //  as published by the Free Software Foundation.                      *
+       //                                                                     *
+       //  See GNU General Public License for details.                        *
+       //          http://www.opensource.org                                  *
+       //          http://www.opensource.org/licenses/gpl-license.html        *
+       //                                                                     *
+       //=====================================================================*
+       //  History:                                                           *
+       //                                                                     *
+       //  Datum       Name          Änderung                                 *
+       //  ----------  ------------  ---------------------------------------  *
+       //  10.01.2003  Th.Raddatz    Removed special character § from source. *
+       //                                                                     *
+       //  16.12.2003  Th.Raddatz    Added mesage files.                      *
+       //                                                                     *
+       //  20.05.2008  Th.Raddatz    Changed parameter 'AGE' to mandatory.    *
+       //                                                                     *
+       //  24.05.2012  Th.Raddatz    Fixed "Object not found" error when      *
+       //                            'curRcvNme' is blanks when searching     *
+       //                            the oldest receiver and having reached   *
+       //                            the very first receiver of the journal.  *
+       //                                                                     *
+       //  08.01.2019  Th.Raddatz    Converted to /free.                      *
+       //                                                                     *
+       //=====================================================================*
+       // >>PRE-COMPILER<<                                                    *
+       //   >>CRTCMD<< CRTRPGMOD    MODULE(&LI/&OB) +                         *
+       //                           SRCFILE(&SL/&SF) SRCMBR(&SM);             *
+       //   >>IMPORTANT<<                                                     *
+       //     >>PARM<< TRUNCNBR(*NO);                                         *
+       //     >>PARM<< DBGVIEW(*LIST);                                        *
+       //   >>END-IMPORTANT<<                                                 *
+       //   >>EXECUTE<<                                                       *
+       //   >>CMD<<    CRTPGM       PGM(&LI/DLTOLDJRNR) +                     *
+       //                           MODULE(&LI/&OB  +                         *
+       //                                  &LI/DLTOLDJRR2) +                  *
+       //                           DETAIL(*BASIC) +                          *
+       //                           ACTGRP(*NEW);                             *
+       // >>END-PRE-COMPILER<<                                                *
+       //=====================================================================*
       /COPY QDLTOLDJRN,H_SPEC
       /COPY QDLTOLDJRN,COPYRIGHT
-      *
-      * ***************************************************************
-      *  External Prototypes
-      * ***************************************************************
+
+       // ***************************************************************
+       //  External Prototypes
+       // ***************************************************************
      D qjoRtvJrnInf...
      D                 PR                  extproc('QjoRetrieveJournal-
      D                                     Information')
@@ -2614,7 +2617,7 @@ srccssid=  "00273">
      D  format                        8A   const
      D  jrnInfRtv                  2048A   const options(*varsize)
      D  errorCode                   272A         options(*varsize: *omit)
-      *
+
      D qjoRtvJrnRcvInf...
      D                 PR                  extproc('QjoRtvJrnReceiver-
      D                                     Information')
@@ -2623,33 +2626,8 @@ srccssid=  "00273">
      D  qJrnRcvNme                   20A   const
      D  format                        8A   const
      D  errorCode                   272A         options(*varsize: *omit)
-      *
-     D rtvMsgText...
-     D                 PR           256A          varying
-     D                                     extproc('rtvMsgText')
-     D  i_errorCode                        const  likeds(errorCode_t)
-     D  i_qMsgF                      20A   const  options(*nopass)
-      *
-     D sndDiagMsg...
-     D                 PR                  extproc('sndDiagMsg')
-     D  i_errorCode                        const  likeds(errorCode_t)
-      *
-     D sndInfoMsg...
-     D                 PR                  extproc('sndInfoMsg')
-     D  i_msgID                       7A   const
-     D  i_msgDta                    512A   const  varying
-      *
-     D kill...
-     D                 PR                  extproc('kill')
-     D  i_msgID                       7A   const
-     D  i_msgDta                   2048A   const options(*varsize)
-     D  i_size                       10I 0 const
-      *
-     D inzApiErrorCode...
-     D                 PR                  likeds(errorCode_t)
-     D                                     extproc('inzApiErrorCode')
-      *
-     D sndPgmMsg...
+
+     D QMHSNDPM...
      D                 PR                  extpgm('QMHSNDPM')
      D  msgID                         7A   const
      D  qMsgF                        20A   const
@@ -2660,8 +2638,8 @@ srccssid=  "00273">
      D  callStkCnt                   10I 0 const
      D  msgKey                        4A   const
      D  errorCode                   272A         options(*varsize)
-      *
-     D rtvMsg...
+
+     D QMHRTVM...
      D                 PR                  extpgm('QMHRTVM')
      D  o_msgInf                  65535A          options(*varsize)
      D  i_msgInfLen                  10I 0 const
@@ -2673,918 +2651,892 @@ srccssid=  "00273">
      D  i_rplVars                    10A   const
      D  i_rtnCtrlChrs                10A   const
      D  io_ErrCode                65535A          options(*varsize )
-      *
+
      D rtvm0100_t      DS                  qualified               based(pDummy)
-     D  bytRet                        9B 0
-     D  bytAvl                        9B 0
-     D  lenMsgRet                     9B 0
-     D  lenMsgAvl                     9B 0
-     D  lenHelpRet                    9B 0
-     D  lenHelpAvl                    9B 0
+     D  bytRet                       10I 0
+     D  bytAvl                       10I 0
+     D  lenMsgRet                    10I 0
+     D  lenMsgAvl                    10I 0
+     D  lenHelpRet                   10I 0
+     D  lenHelpAvl                   10I 0
      D  data                       2048A
-      *
-      * ***************************************************************
-      *  External Prototypes
-      * ***************************************************************
+
+       // ***************************************************************
+       //  External Prototypes
+       // ***************************************************************
       /DEFINE PROTOTYPE
       /COPY QDLTOLDJRN,DLTOLDJRR2
       /UNDEFINE PROTOTYPE
-      *
-      * ***************************************************************
-      *  Internal Prototypes
-      * ***************************************************************
-      *
+
+     D DLTOLDJRR1...
+     D                 PR                  extpgm('DLTOLDJRNR')
+     D  i_qJrnNme                          const likeds(qObj_t)
+     D  i_ageInDays                   3P 0 const
+     D  i_detach                     10A   const
+     D  i_savOpt                     10A   const
+     D  i_ds_dltOpt                        const likeds(ds_dltOpt_t)
+     D  i_logLvl                      5I 0 const
+
+       // ***************************************************************
+       //  Internal Prototypes
+       // ***************************************************************
+
      D main...
      D                 PR
-      *
+
      D apiTimeStmp_to_timeStmp...
      D                 PR              Z
      D  i_timeStamp13                13A   value
-      *
+
      D execSysCmd...
      D                 PR              N
      D  i_cmd                      1024A   value
      D  o_errorCode                               likeds(errorCode_t)
-      *
+
      D rtvJrnRcvInf...
      D                 PR              N
      D  i_jrnRcvNme                  10A   value
      D  i_jrnRcvLib                  10A   value
      D  o_rcvVar                   2048A
-      *
+
      D getReceiverStatus...
      D                 PR            64A   varying
      D  i_status                      1A   const
-      *
+
      D receiverWasSaved...
      D                 PR              N
      D  i_status                      1A   const
-      *
-      * ***************************************************************
-      *  Type Definitions
-      * ***************************************************************
+
+     D rtvMsgText...
+     D                 PR           256A          varying
+     D                                     extproc('rtvMsgText')
+     D  i_errorCode                        const  likeds(errorCode_t)
+     D  i_qMsgF                            const  likeds(qObj_t)
+     D                                            options(*nopass)
+
+     D sndDiagMsg...
+     D                 PR                  extproc('sndDiagMsg')
+     D  i_errorCode                        const  likeds(errorCode_t)
+
+     D sndInfoMsg...
+     D                 PR                  extproc('sndInfoMsg')
+     D  i_msgID                       7A   const
+     D  i_msgDta                    512A   const  varying
+
+     D kill...
+     D                 PR                  extproc('kill')
+     D  i_msgID                       7A   const
+     D  i_msgDta                   2048A   const options(*varsize)
+     D  i_size                       10I 0 const
+
+     D inzApiErrorCode...
+     D                 PR                  likeds(errorCode_t)
+     D                                     extproc('inzApiErrorCode')
+
+       // ***************************************************************
+       //  Type Definitions
+       // ***************************************************************
+
+     D qObj_t          DS                  qualified based(pDummy)
+     D  name                         10A
+     D  lib                          10A
+
+     D ds_dltOpt_t     DS                  qualified based(pDummy)
+     D  numE                          5I 0
+     D  value                        11A   dim(3)
+
      D errorCode_t     DS                                          based(pDummy)
      D  bytPrv                       10I 0                                      Bytes provided
      D  bytAvl                       10I 0                                      Bytes availabl
      D  excID                         7A                                        Exception ID
      D  res_01                        1A                                        Reserved
      D  excDta                      256A                                        Exception data
-      *
-      * ***************************************************************
-      *  Global constants
-      * ***************************************************************
+
+       // ***************************************************************
+       //  Global constants
+       // ***************************************************************
      D cErrMsg         C                   const('Programm fehlerhaft beendet.')
-      *
-     D qCPFMSG         DS
-     D  qCPFMSG_file                 10A   inz('QCPFMSG')
-     D  qCPFMSG_lib                  10A   inz('QSYS'   )
-      *
-     D qJRNMSG         DS
-     D  qJRNMSG_file                 10A   inz('DLTOLDJRNR')
-     D  qJRNMSG_lib                  10A   inz('*LIBL'  )
-      *
-      * ***************************************************************
-      *  *ENTRY - Parameter defined as global
-      * ***************************************************************
-      *
-     D i_qJrnNme       DS                                                       qual. Journal
-     D  i_jrnNme                     10A
-     D  i_jrnLib                     10A
-     D i_ageInDays     S              3P 0                                      Age in days
-     D i_detach        S             10A                                        detach current
-     D i_savOpt        S             10A                                        save option
-     D i_ds_dltOpt     DS                                                       delete option
-     D  i_nbrDltOpt                   5I 0
-     D  i_dltOpt                     11A   dim(3)
-     D i_logLvl        S              5I 0                                      save option
-      *
-      * ***************************************************************
-      *              EXECUTABLE CODE STARTS HERE
-      * ***************************************************************
-      *
-     C     *ENTRY        PLIST
-     C                   PARM                    i_qJrnNme
-     C                   PARM                    i_ageInDays
-     C                   PARM                    i_detach
-     C                   PARM                    i_savOpt
-     C                   PARM                    i_ds_dltOpt
-     C                   PARM                    i_logLvl
-      *
-     C                   Callp     main
-      *
-     C                   Eval      *inlr = *on
-      *
-      * ***************************************************************
-      *  main program control
-      *  (This ensures to have local variables in main stream, too.)
-      * ***************************************************************
-      *
+
+     D qCPFMSG         DS                  qualified
+     D  name                         10A   inz('QCPFMSG')
+     D  lib                          10A   inz('QSYS'   )
+
+     D qJRNMSG         DS                  qualified
+     D  name                         10A   inz('DLTOLDJRNR')
+     D  lib                          10A   inz
+
+       // ***************************************************************
+       //  *ENTRY - Parameter defined as global
+       // ***************************************************************
+
+       // Prototype for 'QCAPCMD'
+     D QCAPCMD         PR                  EXTPGM('QCAPCMD')
+     d  i_cmd                     32702A   const  options(*varsize)
+     d  i_cmdLen                     10i 0 const
+     d  i_ctrlBlk                 32767A   const  options(*varsize)
+     d  i_ctrlBlkLen                 10i 0 const
+     d  i_ctrlBlkFmt                  8a   const
+     d  o_chgCmd                  32702A          options(*varsize)
+     d  i_chgCmdLnPrv                10i 0 const
+     d  o_chgCmdLnAvl                10i 0
+     d  io_errorCode              32767A          options(*varsize)
+
+       // Option control block
+     d cpop0100_t      ds                  qualified based(pDummy)
+     d  typeCmdPrc             1      4I 0
+     d  DBCS_data              5      5A
+     d  prmtAction             6      6A
+     d  cmdStrSyntax           7      7A
+     d  msgRtvKey              8     11A
+     d  res_01                12     20A
+
+      /DEFINE SDS_EXTENDED
+      /COPY QCRTMSGDS,SDS
+
+       // ***************************************************************
+       //              EXECUTABLE CODE STARTS HERE
+       // ***************************************************************
+     D DLTOLDJRR1...
+     D                 PI
+     D  i_qJrnNme                          const likeds(qObj_t)
+     D  i_ageInDays                   3P 0 const
+     D  i_detach                     10A   const
+     D  i_savOpt                     10A   const
+     D  i_ds_dltOpt                        const likeds(ds_dltOpt_t)
+     D  i_logLvl                      5I 0 const
+      /FREE
+
+       main();
+
+       *inlr = *on;
+
+      /END-FREE
+
+       // ***************************************************************
+       //  main program control
+       //  (This ensures to have local variables in main stream, too.)
+       // ***************************************************************
      P main...
      P                 B
-      *
-     D main...
      D                 PI
-      *
-      * ---------------------------------------------------------------
-      *  Definitions for QjoRetrieveJournalInformation
-      * ---------------------------------------------------------------
-     D RJRN0100        DS
-     D  rj1_bytRet             1      4B 0 inz                                  Bytes Returned
-     D  rj1_bytAvl             5      8B 0 inz                                  Bytes Availabl
-     D  rj1_ofsKeyInf          9     12B 0 inz                                  Offset Key Inf
-     D  rj1_jrnNme            13     22A   inz                                  Journal Name
-     D  rj1_jrnLib            23     32A   inz                                  Journal Librar
-     D  rj1_auxSP             33     36B 0 inz                                  Aux Stg Pool
-     D  rj1_msgQNme           37     46A   inz                                  Message Queue
-     D  rj1_msgQLib           47     56A   inz                                  Message Queue
-     D  rj1_mgeRcvOpt         57     57A   inz                                  Manage Receive
-     D  rj1_dltRcvOpt         58     58A   inz                                  Delete Receive
-     D  rj1_rcvSizRmv         59     59A   inz                                  RcvSizOpt *RMV
-     D  rj1_rcvSizMin         60     60A   inz                                  RcvSizOpt *MIN
-     D  rj1_res_01            61     65A   inz                                  Reserved 01
-     D  rj1_jrnTyp            66     66A   inz                                  Journal Type
-     D  rj1_rmtJrnTyp         67     67A   inz                                  Rmt Journal Ty
-     D  rj1_jrnState          68     68A   inz                                  Journal State
-     D  rj1_jrnDlvMde         69     69A   inz                                  Journal Delive
-     D  rj1_lclJrnNme         70     79A   inz                                  Local Journal
-     D  rj1_lclJrnLib         80     89A   inz                                  Local Journal
-     D  rj1_lclJrnSys         90     97A   inz                                  Local Journal
-     D  rj1_srcJrnNme         98    107A   inz                                  Source Journal
-     D  rj1_srcJrnLib        108    117A   inz                                  Source Journal
-     D  rj1_srcJrnSys        118    125A   inz                                  Source Journal
-     D  rj1_rdrRcvLib        126    135A   inz                                  Redirected Rcv
-     D  rj1_jrnTxt           136    185A   inz                                  Journal Text
-     D  rj1_res_02           186    196A   inz                                  Reserved 02
-     D  rj1_nbrAttRcv        197    200B 0 inz                                  Nbr attached R
-     D  rj1_attRcvNme        201    210A   inz                                  Attached Rcv N
-     D  rj1_attRcvLib        211    220A   inz                                  Attached Rcv L
-     D  rj1_lclJnSyAR        221    228A   inz                                  Lcl Jrn Sys at
-     D  rj1_srcJnSyAR        229    236A   inz                                  Src Jrn Sys at
-     D  rj1_att2RcvNm        237    246A   inz                                  Attached dual
-     D  rj1_att2RcvLb        247    256A   inz                                  Attached dual
-     D  rj1_res_03           257    448A   inz                                  Reserved 03
-     D  rj1_nbrKeys          449    452B 0 inz                                  Nbr Keys in Ke
-      *
-     D rcvVarLen       S             10I 0 inz                                  Length receive
-      *
-     D qJrnNme         DS
+
+       // ---------------------------------------------------------------
+       //  Definitions for QjoRetrieveJournalInformation
+       // ---------------------------------------------------------------
+     D RJRN0100        DS                  qualified
+     D  bytRet                       10I 0 inz                                  Bytes Returned
+     D  bytAvl                       10I 0 inz                                  Bytes Availabl
+     D  ofsKeyInf                    10I 0 inz                                  Offset Key Inf
      D  jrnNme                       10A   inz                                  Journal Name
-     D  jrnLib                       10A   inz                                  Journal Lib
-      *
-     D format          S              8A   inz                                  Format Name
-      *
-     D jrnInfRtv       DS
+     D  jrnLib                       10A   inz                                  Journal Librar
+     D  auxSP                        10I 0 inz                                  Aux Stg Pool
+     D  msgQNme                      10A   inz                                  Message Queue
+     D  msgQLib                      10A   inz                                  Message Queue
+     D  mgeRcvOpt                     1A   inz                                  Manage Receive
+     D  dltRcvOpt                     1A   inz                                  Delete Receive
+     D  rcvSizRmv                     1A   inz                                  RcvSizOpt *RMV
+     D  rcvSizMin                     1A   inz                                  RcvSizOpt *MIN
+     D  res_01                        5A   inz                                  Reserved 01
+     D  jrnTyp                        1A   inz                                  Journal Type
+     D  rmtJrnTyp                     1A   inz                                  Rmt Journal Ty
+     D  jrnState                      1A   inz                                  Journal State
+     D  jrnDlvMde                     1A   inz                                  Journal Delive
+     D  lclJrnNme                    10A   inz                                  Local Journal
+     D  lclJrnLib                    10A   inz                                  Local Journal
+     D  lclJrnSys                     8A   inz                                  Local Journal
+     D  srcJrnNme                    10A   inz                                  Source Journal
+     D  srcJrnLib                    10A   inz                                  Source Journal
+     D  srcJrnSys                     8A   inz                                  Source Journal
+     D  rdrRcvLib                    10A   inz                                  Redirected Rcv
+     D  jrnTxt                       50A   inz                                  Journal Text
+     D  res_02                       11A   inz                                  Reserved 02
+     D  nbrAttRcv                    10I 0 inz                                  Nbr attached R
+     D  attRcvNme                    10A   inz                                  Attached Rcv N
+     D  attRcvLib                    10A   inz                                  Attached Rcv L
+     D  lclJnSyAR                     8A   inz                                  Lcl Jrn Sys at
+     D  srcJnSyAR                     8A   inz                                  Src Jrn Sys at
+     D  att2RcvNm                    10A   inz                                  Attached dual
+     D  att2RcvLb                    10A   inz                                  Attached dual
+     D  res_03                      192A   inz                                  Reserved 03
+     D  nbrKeys                      10I 0 inz                                  Nbr Keys in Ke
+
+     D jrnInfRtv       DS                  qualified
      D  nbrVarLenRec                 10I 0 inz                                  Jrn Inf to ret
-      *
-      * ---------------------------------------------------------------
-      *  Definitions for rtvJrnRcvInf
-      * ---------------------------------------------------------------
-     D RRCV0100        DS          2048
-     D  rv1_bytRet             1      4I 0 inz                                  Bytes Returned
-     D  rv1_bytAvl             5      8I 0 inz                                  Bytes Availabl
-     D  rv1_jrnRcvNme          9     18A   inz                                  Journal Receiv
-     D  rv1_jrnRcvLib         19     28A   inz                                  Journal Receiv
-     D  rv1_jrnNme            29     38A   inz                                  Journal Nme
-     D  rv1_jrnLib            39     48A   inz                                  Journal Lib
-     D  rv1_thrhld            49     52I 0 inz                                  Threshold
-     D  rv1_size              53     56I 0 inz                                  Size
-     D  rv1_auxSP             57     60I 0 inz                                  Aux Stg Pool
-     D  rv1_nbrJrnEnt         61     64I 0 inz                                  Nbr Jrn Entrie
-     D  rv1_maxEntLen         65     68I 0 inz                                  Max ent-spc le
-     D  rv1_maxNulInd         69     72I 0 inz                                  Max Null val i
-     D  rv1_fstSeqNbr         73     76I 0 inz                                  First sequence
-     D  rv1_res_01            77     80A   inz                                  Reserved 01
-     D  rv1_lstSeqNbr         81     84I 0 inz                                  Last sequence
-     D  rv1_res_02            85     88A   inz                                  Reserved 02
-     D  rv1_stat              89     89A   inz                                  Status
-     D  rv1_minLenVal         90     90A   inz                                  Min fixed len
-     D  rv1_res_03            91     95A   inz                                  Reserved 03
-     D  rv1_attDatTim         96    108A   inz                                  Attached date
-     D  rv1_detDatTim        109    121A   inz                                  Detached date
-     D  rv1_savDatTim        122    134A   inz                                  Saved    date
-     D  rv1_rcvTxt           135    184A   inz                                  Text
-     D  rv1_pndTrans         185    185A   inz                                  Pending Transa
-     D  rv1_rmtJrnTyp        186    186A   inz                                  Remote Journal
-     D  rv1_lclJrnNme        187    196A   inz                                  Local Journal
-     D  rv1_lclJrnLib        197    206A   inz                                  Local Journal
-     D  rv1_lclJrnSys        207    214A   inz                                  Local Journal
-     D  rv1_lclRcvLib        215    224A   inz                                  Local Receiver
-     D  rv1_srcJrnNme        225    234A   inz                                  Source Journal
-     D  rv1_srcJrnLib        235    244A   inz                                  Source Journal
-     D  rv1_srcJrnSys        245    252A   inz                                  Source Journal
-     D  rv1_srcRcvLib        253    262A   inz                                  Source Receive
-     D  rv1_rdrRcvLib        263    272A   inz                                  Redirected Rcv
-     D  rv1_2rcvNme          273    282A   inz                                  Dual Rcv Name
-     D  rv1_2RcvLb           283    292A   inz                                  Dual Rcv Lib
-     D  rv1_prvRcvNme        293    302A   inz                                  Prv Jrn Rcv Na
-     D  rv1_prvRcvLib        303    312A   inz                                  Prv Jrn Rcv Li
-     D  rv1_prv2RcvNm        313    322A   inz                                  Prv Dual Jrn R
-     D  rv1_prv2RcvLb        323    332A   inz                                  Prv Dual Jrn R
-     D  rv1_nxtRcvNme        333    342A   inz                                  Nxt Jrn Rcv Na
-     D  rv1_nxtRcvLib        343    352A   inz                                  Nxt Jrn Rcv Li
-     D  rv1_nxt2RcvNm        353    362A   inz                                  Nxt Dual Jrn R
-     D  rv1_nxt2RcvLb        363    372A   inz                                  Nxt Dual Jrn R
-     D  rv1_res_04           373    512A   inz                                  Reserved 04
-      *
-      * ---------------------------------------------------------------
-      *  API error structure
-      * ---------------------------------------------------------------
+
+       // ---------------------------------------------------------------
+       //  Definitions for rtvJrnRcvInf
+       // ---------------------------------------------------------------
+     D RRCV0100        DS          2048    qualified
+     D  bytRet                       10I 0 inz                                  Bytes Returned
+     D  bytAvl                       10I 0 inz                                  Bytes Availabl
+     D  jrnRcvNme                    10A   inz                                  Journal Receiv
+     D  jrnRcvLib                    10A   inz                                  Journal Receiv
+     D  jrnNme                       10A   inz                                  Journal Nme
+     D  jrnLib                       10A   inz                                  Journal Lib
+     D  thrhld                       10I 0 inz                                  Threshold
+     D  size                         10I 0 inz                                  Size
+     D  auxSP                        10I 0 inz                                  Aux Stg Pool
+     D  nbrJrnEnt                    10I 0 inz                                  Nbr Jrn Entrie
+     D  maxEntLen                    10I 0 inz                                  Max ent-spc le
+     D  maxNulInd                    10I 0 inz                                  Max Null val i
+     D  fstSeqNbr                    10I 0 inz                                  First sequence
+     D  res_01                        4A   inz                                  Reserved 01
+     D  lstSeqNbr                    10I 0 inz                                  Last sequence
+     D  res_02                        4A   inz                                  Reserved 02
+     D  stat                          1A   inz                                  Status
+     D  minLenVal                     1A   inz                                  Min fixed len
+     D  res_03                        5A   inz                                  Reserved 03
+     D  attDatTim                    13A   inz                                  Attached date
+     D  detDatTim                    13A   inz                                  Detached date
+     D  savDatTim                    13A   inz                                  Saved    date
+     D  rcvTxt                       50A   inz                                  Text
+     D  pndTrans                      1A   inz                                  Pending Transa
+     D  rmtJrnTyp                     1A   inz                                  Remote Journal
+     D  lclJrnNme                    10A   inz                                  Local Journal
+     D  lclJrnLib                    10A   inz                                  Local Journal
+     D  lclJrnSys                     8A   inz                                  Local Journal
+     D  lclRcvLib                    10A   inz                                  Local Receiver
+     D  srcJrnNme                    10A   inz                                  Source Journal
+     D  srcJrnLib                    10A   inz                                  Source Journal
+     D  srcJrnSys                     8A   inz                                  Source Journal
+     D  srcRcvLib                    10A   inz                                  Source Receive
+     D  rdrRcvLib                    10A   inz                                  Redirected Rcv
+     D  dualRcvNme                   10A   inz                                  Dual Rcv Name
+     D  dualRcvLb                    10A   inz                                  Dual Rcv Lib
+     D  prvRcvNme                    10A   inz                                  Prv Jrn Rcv Na
+     D  prvRcvLib                    10A   inz                                  Prv Jrn Rcv Li
+     D  prv2RcvNm                    10A   inz                                  Prv Dual Jrn R
+     D  prv2RcvLb                    10A   inz                                  Prv Dual Jrn R
+     D  nxtRcvNme                    10A   inz                                  Nxt Jrn Rcv Na
+     D  nxtRcvLib                    10A   inz                                  Nxt Jrn Rcv Li
+     D  nxt2RcvNm                    10A   inz                                  Nxt Dual Jrn R
+     D  nxt2RcvLb                    10A   inz                                  Nxt Dual Jrn R
+     D  res_04                      140A   inz                                  Reserved 04
+
+       // ---------------------------------------------------------------
+       //  API error structure
+       // ---------------------------------------------------------------
      D errorCode       DS                  likeds(errorCode_t) inz
-      *
-      * ---------------------------------------------------------------
-      *  Definitions for QMHSNDPM
-      * ---------------------------------------------------------------
-      *
+
+       // ---------------------------------------------------------------
+       //  Definitions for QMHSNDPM
+       // ---------------------------------------------------------------
+
       /COPY QDLTOLDJRN,USR0001
       /COPY QDLTOLDJRN,USR0002
       /COPY QDLTOLDJRN,USR0003
-      *
-      * ---------------------------------------------------------------
-      *  Various fields
-      * ---------------------------------------------------------------
+
+       // ---------------------------------------------------------------
+       //  Various fields
+       // ---------------------------------------------------------------
      D curRcvNme       S             10A   inz
      D curRcvLib       S             10A   inz
-      *
+
      D lastRcvNme      S             10A   inz
      D lastRcvLib      S             10A   inz
-      *
+
      D tgtTimeStamp    S               Z   inz
-      *
+
      D dltCounter      S             10I 0 inz
      D rcvCounter      S             10I 0 inz
-     D dltOpt          S            100A   inz
+     D dltOpts         S            100A   inz
      D idx             S             10I 0 inz
-      *
+
      D LEFT_MARGIN     S             18A   inz
-      *
-      * -----------------------------------------
-      *  Initialize counter
-      * -----------------------------------------
-     C                   Eval      dltCounter = 0
-     C                   Eval      rcvCounter = 0
-      *
-      * -----------------------------------------
-      *  Open logger
-      * -----------------------------------------
-     C                   If        i_logLvl <> cLOGGER_NONE
-     C                   Callp     Logger_open(i_logLvl)
-     C                   Callp     Logger_basic('Delete Old Journal Receiver')
-     C                   Callp     Logger_basic('---------------------------')
-     C                   Callp     Logger_basic('')
-     C                   Endif
-      *
-      * -----------------------------------------
-      *  Get delete options
-      * -----------------------------------------
-     C                   Eval      dltOpt = ''
-     C     1             Do        i_nbrDltOpt   idx
-     C                   Eval      dltOpt = %trimr(dltOpt)
-     C                                    + ' '
-     C                                    + i_dltOpt(idx)
-     C                   Enddo
-      *
-      * -----------------------------------------
-      *  Set target timestamp
-      * -----------------------------------------
-     C                   Eval      tgtTimeStamp = %date() + t'23.59.59'
-     C                   Subdur    i_ageInDays:*dtgtTimeStamp
-      *
-      *  Detach current receiver
-     C                   If        i_detach = '*YES'
-     C                   Callp     Logger_verbose(
-     C                                   'Detaching current journal receiver')
-     C                   If        not execSysCmd(
-     C                                   'CHGJRN JRN(' + %trim(i_jrnLib) +
-     C                                                   '/'             +
-     C                                                   %trim(i_jrnNme) +
-     C                                             ') JRNRCV(*GEN)'
-     C                                   : errorCode)
-     C                   Callp     sndDiagMsg(errorCode)
-     C                   Clear                   USR0001
-     C                   Callp     Kill('USR0001': USR0001: %size(USR0001))
-     C                   Else
-     C                   Callp     Logger_basic('Detached current receiver +
-     C                                           from journal ' +
-     C                                           %trim(i_jrnLib) +
-     C                                           '/'             +
-     C                                           %trim(i_jrnNme))
-     C                   Endif
-     C                   Endif
-      *
-      *  Retrieve journal information
-     C                   Callp     Logger_basic(
-     C                                   'Retrieving journal information of +
-     C                                    journal: ' +
-     C                                       %trim(i_jrnLib)      +
-     C                                       '/'                  +
-     C                                       %trim(i_jrnNme))
-      *
-     C                   Clear                   RJRN0100
-     C                   Eval      rcvVarLen    = %size(RJRN0100)
-     C                   Eval      qJrnNme      = i_qJrnNme
-     C                   Eval      format       = 'RJRN0100'
-     C                   Eval      nbrVarLenRec = 0
-      *
-     C                   Eval      errorCode = inzApiErrorCode()
-     C                   Callp     qjoRtvJrnInf(RJRN0100       :
-     C                                          rcvVarLen      :
-     C                                          qJrnNme        :
-     C                                          format         :
-     C                                          jrnInfRtv      :
-     C                                          errorCode      )
-      *
-     C                   If        errorCode.bytAvl <> 0
-     C                   Callp     sndDiagMsg(errorCode)
-     C                   Clear                   USR0001
-     C                   Callp     Kill('USR0001': USR0001: %size(USR0001))
-     C                   Endif
-      *
-      * -----------------------------------------
-      *  Start loop to find the last receiver
-      * -----------------------------------------
-     C                   Callp     Logger_verbose(
-     C                                   'Going down the chain of journal +
-     C                                    receivers to find the last receiver')
-      *
-     C                   Eval      curRcvNme = rj1_attRcvNme
-     C                   Eval      curRcvLib = rj1_attRcvLib
-      *
-     C                   Callp     Logger_verbose(
-     C                                   '... first receiver: ' +
-     C                                       %trim(curRcvLib)     +
-     C                                       '/'                  +
-     C                                       %trim(curRcvNme))
-      *
-      *  Retrieve journal receiver information
-      *  of previous attached receiver
-     C                   DoW       curRcvNme <> '' and
-     C                             rtvJrnRcvInf(curRcvNme :
-     C                                          curRcvLib :
-     C                                          RRCV0100  )
-      *
-      *  Show receiver properties
-     C                   Callp     Logger_verbose(
-     C                                   '... properties of receiver: ' +
-     C                                       %trim(rv1_jrnRcvLib) +
-     C                                       '/'                  +
-     C                                       %trim(rv1_jrnRcvNme))
-     C                   Callp     Logger_verbose(LEFT_MARGIN +
-     C                                   '    size: ' + %char(rv1_size))
-     C                   Callp     Logger_verbose(LEFT_MARGIN +
-     C                                   '  status: ' +
-     C                                getReceiverStatus(rv1_stat))
-     C                   Callp     Logger_verbose(LEFT_MARGIN +
-     C                                   'attached: ' +
-     C                             %char(
-     C                                apiTimeStmp_to_timeStmp(rv1_attDatTim)))
-     C                   Callp     Logger_verbose(LEFT_MARGIN +
-     C                                   'detached: ' +
-     C                             %char(
-     C                                apiTimeStmp_to_timeStmp(rv1_detDatTim)))
-     C                   Callp     Logger_verbose(LEFT_MARGIN +
-     C                                   '   saved: ' +
-     C                             %char(
-     C                                apiTimeStmp_to_timeStmp(rv1_savDatTim)))
-      *
-      *  Keep track of the total number of receivers available
-     C                   Eval      rcvCounter = rcvCounter + 1
-      *
-      *  If there was no error
-      *  remind the last available revciever, then.
-     C                   Eval      lastRcvNme = curRcvNme
-     C                   Eval      lastRcvLib = curRcvLib
-      *
-      *  Process the previous receiver
-     C                   Eval      curRcvNme  = rv1_prvRcvNme
-     C                   Eval      curRcvLib  = rv1_prvRcvLib
-      *
-     C                   Enddo
-      *
-     C                   Callp     Logger_verbose(
-     C                                   '... last receiver:  ' +
-     C                                       %trim(lastRcvLib)     +
-     C                                       '/'                  +
-     C                                       %trim(lastRcvNme))
-      *
-     C                   Callp     Logger_verbose(
-     C                                   'Total number of receivers: ' +
-     C                                    %char(rcvCounter))
-      *
-      * -----------------------------------------
-      *  Start loop to delete journal receiver
-      * -----------------------------------------
-     C                   Callp     Logger_basic(
-     C                                   'Going up the chain of journal +
-     C                                    receivers to delete receivers +
-     C                                    that are older than: ' +
-     C                                    %char(%date(tgtTimeStamp)) +
-     C                                    ' / ' +
-     C                                    %char(%time(tgtTimeStamp)))
-      *
-      *  Retrieve journal receiver information
-      *  of the last receiver in the chain
-     C                   DoW       rtvJrnRcvInf(lastRcvNme :
-     C                                          lastRcvLib :
-     C                                          RRCV0100   )
-     C                             and
-     C                             (rj1_attRcvNme + rj1_attRcvLib <>
-     C                              lastRcvNme    + lastRcvLib)
-      *
-     C                   Callp     Logger_verbose(
-     C                                   '... processing receiver:  ' +
-     C                                       %trim(rv1_jrnRcvLib)  +
-     C                                       '/'                   +
-     C                                       %trim(rv1_jrnRcvNme))
-      *
-      *  If the date matches the selection, ...
-     C                   If        (apiTimeStmp_to_timeStmp(rv1_detDatTim)
-     C                              < tgtTimeStamp)
-      *  ... then
-      *      If the receiver had been saved or all reveicers are selected
-     C                   If        receiverWasSaved(rv1_stat) or
-     C                             i_savOpt = '*ALL'
-      *      ... then
-      *          delete the receiver
-     C                   If        not execSysCmd(
-     C                                   'DLTJRNRCV JRNRCV(' +
-     C                                       %trim(rv1_jrnRcvLib) +
-     C                                       '/'                  +
-     C                                       %trim(rv1_jrnRcvNme) +
-     C                                       ') '                 +
-     C                                   'DLTOPT('                +
-     C                                       %trim(dltOpt)        +
-     C                                       ')'
-     C                                   : errorCode)
-      *          inform the user
-     C                   Callp     sndDiagMsg(errorCode)
-     C                   Clear                   USR0001
-     C                   Callp     Kill('USR0001': USR0001: %size(USR0001))
-      *          exit loop in case of an error
-     C                   Leave
-     C                   Endif
-      *
-     C                   Callp     Logger_basic('Deleted receiver ' +
-     C                                           %trim(rv1_jrnRcvLib) +
-     C                                           '/'                  +
-     C                                           %trim(rv1_jrnRcvNme))
-     C
-      *          keep a counter of how
-      *          many receivers are deleted
-     C                   Eval      dltCounter = dltCounter + 1
-      *
-      *          send a message to the user
-     C                   Clear                   USR0002
-     C                   Eval      USR00021 = rv1_jrnRcvNme
-     C                   Eval      USR00022 = rv1_jrnRcvLib
-     C                   Callp     sndInfoMsg('USR0002': USR0002)
-      *
-     C                   Else
-      *      ... else
-      *          exit loop if receiver has not been saved yet
-     C                   Callp     Logger_verbose(
-     C                                   '... skipped receiver:  ' +
-     C                                       %trim(rv1_jrnRcvLib) +
-     C                                       '/'                  +
-     C                                       %trim(rv1_jrnRcvNme) +
-     C                                   ' because it has not yet been saved')
-     C                   Callp     Logger_verbose(
-     C                                   '... exiting loop')
-     C                   Leave
-     C                   Endif
-     C                   Else
-      *  ... else
-      *      ignore receiver if it is not old enough
-     C                   Callp     Logger_verbose(
-     C                                   '... skipped receiver:  ' +
-     C                                       %trim(rv1_jrnRcvLib) +
-     C                                       '/'                  +
-     C                                       %trim(rv1_jrnRcvNme) +
-     C                                   ' because it is not old enough')
-     C                   Callp     Logger_verbose(
-     C                                   '... exiting loop')
-     C                   Leave
-     C                   Endif
-      *
-      *  process the next receiver
-     C                   Eval      lastRcvNme  = rv1_nxtRcvNme
-     C                   Eval      lastRcvLib  = rv1_nxtRcvLib
-     C                   Enddo
-      *
-     C                   Callp     Logger_basic(
-     C                                   'Deleted ' + %char(dltCounter) +
-     C                                   ' of ' + %char(rcvCounter) +
-     C                                   ' journal receivers')
-      *
-     C                   Callp     Logger_basic(
-     C                                   'Finished deleting receivers')
-      *
-      * -----------------------------------------
-      *  Close logger
-      * -----------------------------------------
-     C                   Callp     Logger_close()
-      *
-      *  After all receivers have been deleted that met the
-      *  requirements, send a final message to the user.
-     C                   Clear                   USR0003
-     C                   Eval      USR00031 = dltCounter
-     C                   Eval      USR00032 = rcvCounter
-     C                   Callp     sndInfoMsg('USR0003': USR0003)
-      *
-     P main...
+      /FREE
+
+       qJRNMSG.name = 'DLTOLDJRNR';
+       qJRNMSG.lib = sds.pgmLib;
+
+       // -----------------------------------------
+       //  Initialize counter
+       // -----------------------------------------
+       dltCounter = 0;
+       rcvCounter = 0;
+
+       // -----------------------------------------
+       //  Open logger
+       // -----------------------------------------
+       If i_logLvl <> cLOGGER_NONE;
+          Logger_open(i_logLvl);
+          Logger_basic('Delete Old Journal Receiver');
+          Logger_basic('---------------------------');
+          Logger_basic('');
+       Endif;
+
+       // -----------------------------------------
+       //  Get delete options
+       // -----------------------------------------
+       dltOpts = '';
+       FOR idx = 1 TO i_ds_dltOpt.numE;
+          dltOpts = %trimr(dltOpts) + ' ' + i_ds_dltOpt.value(idx);
+       ENDFOR;
+
+       // -----------------------------------------
+       //  Set target timestamp
+       // -----------------------------------------
+       tgtTimeStamp = %date() + t'23.59.59';
+       tgtTimeStamp = tgtTimeStamp - %days(i_ageInDays);
+
+       //  Detach current receiver
+       If i_detach = '*YES';
+          Logger_verbose(
+               'Detaching current journal receiver');
+          If not execSysCmd(
+                'CHGJRN JRN(' + %trim(i_qJrnNme.lib) +
+                                '/'             +
+                                %trim(i_qJrnNme.name) +
+                          ') JRNRCV(*GEN)'
+                : errorCode);
+             sndDiagMsg(errorCode);
+             Clear USR0001;
+             Kill('USR0001': USR0001: %size(USR0001));
+          Else;
+             Logger_basic('Detached current receiver +
+                          from journal ' +
+                          %trim(i_qJrnNme.lib) +
+                          '/'             +
+                          %trim(i_qJrnNme.name));
+          Endif;
+       Endif;
+
+       //  Retrieve journal information
+       Logger_basic(
+            'Retrieving journal information of +
+             journal: ' +
+                %trim(i_qJrnNme.lib) + '/' + %trim(i_qJrnNme.name));
+
+       Clear RJRN0100;
+       jrnInfRtv.nbrVarLenRec = 0;
+
+       errorCode = inzApiErrorCode();
+       qjoRtvJrnInf(RJRN0100: %size(RJRN0100): i_qJrnNme: 'RJRN0100'
+                    : jrnInfRtv: errorCode);
+
+       If errorCode.bytAvl <> 0;
+          sndDiagMsg(errorCode);
+          Clear USR0001;
+          Kill('USR0001': USR0001: %size(USR0001));
+       Endif;
+
+       // -----------------------------------------
+       //  Start loop to find the last receiver
+       // -----------------------------------------
+       Logger_verbose(
+            'Going down the chain of journal +
+             receivers to find the last receiver');
+
+       curRcvNme = RJRN0100.attRcvNme;
+       curRcvLib = RJRN0100.attRcvLib;
+
+       Logger_verbose(
+            '... first receiver: ' +
+                %trim(curRcvLib)     +
+                '/'                  +
+                %trim(curRcvNme));
+
+       //  Retrieve journal receiver information
+       //  of previous attached receiver
+       DoW curRcvNme <> '' and
+          rtvJrnRcvInf(curRcvNme :
+                    curRcvLib :
+                    RRCV0100  );
+
+          //  Show receiver properties
+          Logger_verbose(
+               '... properties of receiver: ' +
+                   %trim(RRCV0100.jrnRcvLib) +
+                   '/'                  +
+                   %trim(RRCV0100.jrnRcvNme));
+          Logger_verbose(LEFT_MARGIN +
+               '    size: ' + %char(RRCV0100.size));
+          Logger_verbose(LEFT_MARGIN +
+               '  status: ' +
+            getReceiverStatus(RRCV0100.stat));
+          Logger_verbose(LEFT_MARGIN +
+               'attached: ' +
+               %char(apiTimeStmp_to_timeStmp(RRCV0100.attDatTim)));
+          Logger_verbose(LEFT_MARGIN +
+               'detached: ' +
+               %char(apiTimeStmp_to_timeStmp(RRCV0100.detDatTim)));
+          Logger_verbose(LEFT_MARGIN +
+               '   saved: ' +
+               %char(apiTimeStmp_to_timeStmp(RRCV0100.savDatTim)));
+
+          //  Keep track of the total number of receivers available
+          rcvCounter = rcvCounter + 1;
+
+          //  If there was no error
+          //  remind the last available revciever, then.
+          lastRcvNme = curRcvNme;
+          lastRcvLib = curRcvLib;
+
+          //  Process the previous receiver
+          curRcvNme  = RRCV0100.prvRcvNme;
+          curRcvLib  = RRCV0100.prvRcvLib;
+
+       Enddo;
+
+       Logger_verbose(
+            '... last receiver:  ' +
+                 %trim(lastRcvLib) + '/' + %trim(lastRcvNme));
+
+       Logger_verbose(
+            'Total number of receivers: ' + %char(rcvCounter));
+
+       // -----------------------------------------
+       //  Start loop to delete journal receiver
+       // -----------------------------------------
+       Logger_basic(
+            'Going up the chain of journal +
+             receivers to delete receivers +
+             that are older than: ' +
+             %char(%date(tgtTimeStamp)) +
+             ' / ' +
+             %char(%time(tgtTimeStamp)));
+
+       //  Retrieve journal receiver information
+       //  of the last receiver in the chain
+       DoW (rtvJrnRcvInf(lastRcvNme: lastRcvLib: RRCV0100)
+            and (RJRN0100.attRcvNme + RJRN0100.attRcvLib <>
+                 lastRcvNme + lastRcvLib));
+
+          Logger_verbose(
+               '... processing receiver:  ' +
+                   %trim(RRCV0100.jrnRcvLib) + '/' + %trim(RRCV0100.jrnRcvNme));
+
+          //  If the date matches the selection, ...
+          If (apiTimeStmp_to_timeStmp(RRCV0100.detDatTim) < tgtTimeStamp);
+             // ... then
+             //     If the receiver had been saved or all reveicers are selected
+             If (receiverWasSaved(RRCV0100.stat) or i_savOpt = '*ALL');
+                // ... then
+                // delete the receiver
+                If (not execSysCmd(
+                      'DLTJRNRCV JRNRCV(' +
+                          %trim(RRCV0100.jrnRcvLib) + '/' +
+                          %trim(RRCV0100.jrnRcvNme) +
+                          ') ' +
+                      'DLTOPT(' +
+                          %trim(dltOpts) +
+                          ')'
+                      : errorCode));
+                   // inform the user
+                   sndDiagMsg(errorCode);
+                   Clear USR0001;
+                   Kill('USR0001': USR0001: %size(USR0001));
+                   // exit loop in case of an error
+                   Leave;
+                Endif;
+
+                Logger_basic('Deleted receiver ' +
+                             %trim(RRCV0100.jrnRcvLib) + '/' +
+                             %trim(RRCV0100.jrnRcvNme));
+
+                //          keep a counter of how
+                //          many receivers are deleted
+                dltCounter = dltCounter + 1;
+
+                //          send a message to the user
+                Clear USR0002;
+                USR00021 = RRCV0100.jrnRcvNme;
+                USR00022 = RRCV0100.jrnRcvLib;
+                sndInfoMsg('USR0002': USR0002);
+
+             Else;
+                //      ... else
+                //          exit loop if receiver has not been saved yet
+                Logger_verbose(
+                     '... skipped receiver:  ' +
+                         %trim(RRCV0100.jrnRcvLib) + '/' +
+                         %trim(RRCV0100.jrnRcvNme) +
+                     ' because it has not yet been saved');
+                Logger_verbose(
+                     '... exiting loop');
+                Leave;
+             Endif;
+          Else;
+             //  ... else
+             //      ignore receiver if it is not old enough
+             Logger_verbose(
+                  '... skipped receiver:  ' +
+                      %trim(RRCV0100.jrnRcvLib) + '/' +
+                      %trim(RRCV0100.jrnRcvNme) +
+                  ' because it is not old enough');
+             Logger_verbose(
+                  '... exiting loop');
+             Leave;
+          Endif;
+
+          //  process the next receiver
+          lastRcvNme  = RRCV0100.nxtRcvNme;
+          lastRcvLib  = RRCV0100.nxtRcvLib;
+       Enddo;
+
+       Logger_basic(
+            'Deleted ' + %char(dltCounter) +
+            ' of ' + %char(rcvCounter) +
+            ' journal receivers');
+
+       Logger_basic(
+            'Finished deleting receivers');
+
+       // -----------------------------------------
+       //  Close logger
+       // -----------------------------------------
+       Logger_close();
+
+       //  After all receivers have been deleted that met the
+       //  requirements, send a final message to the user.
+       Clear USR0003;
+       USR00031 = dltCounter;
+       USR00032 = rcvCounter;
+       sndInfoMsg('USR0003': USR0003);
+
+      /END-FREE
      P                 E
-      *
-      * ***************************************************************
-      *  apiTimeStmp_to_timeStmp
-      * ***************************************************************
-      *
+
+       // ***************************************************************
+       //  apiTimeStmp_to_timeStmp
+       // ***************************************************************
      P apiTimeStmp_to_timeStmp...
      P                 B
-      *
-     D apiTimeStmp_to_timeStmp...
      D                 PI              Z
      D  i_timeStamp13                13A   value
-      *
-      *  CYYMMDDHHMMSS
-     D datTim13        DS
+
+       //  CYYMMDDHHMMSS
+     D datTim13        DS                  qualified
      D  cyymmdd                       7A   inz
      D  hhmmss                        6A   inz
-      *
+
      D date            S               D   inz
      D time            S               T   inz
      D timeStamp       S               Z   inz
-      * ------------------------------------------------------------- *
-      *
-     C                   Eval      datTim13 = i_timeStamp13
-      *
-     C     *cymd0        Test  (de)              cyymmdd
-     C                   If        (not %error())
-     C                   Eval      date = %date(cyymmdd: *cymd0)
-     C                   Else
-     C                   Clear                   date
-     C                   Endif
-      *
-     C     *hms0         Test  (te)              hhmmss
-     C                   If        (not %error())
-     C                   Eval      time = %time(hhmmss: *hms0)
-     C                   Else
-     C                   Clear                   time
-     C                   Endif
-      *
-     C                   Eval      timeStamp = date + time
-      *
-     C                   Return    timeStamp
-      *
-     P apiTimeStmp_to_timeStmp...
+       // ------------------------------------------------------------- *
+
+      /FREE
+       datTim13 = i_timeStamp13;
+
+       Test(de) *cymd0 datTim13.cyymmdd;
+       If (not %error());
+          date = %date(datTim13.cyymmdd: *cymd0);
+       Else;
+          Clear date;
+       Endif;
+
+       Test(te) *hms0 datTim13.hhmmss;
+       If (not %error());
+          time = %time(datTim13.hhmmss: *hms0);
+       Else;
+          Clear time;
+       Endif;
+
+       timeStamp = date + time;
+
+       Return timeStamp;
+
+      /END-FREE
      P                 E
-      *
-      * ***************************************************************
-      *  execSysCmd
-      * ***************************************************************
-      *
+
+       // ***************************************************************
+       //  execSysCmd
+       // ***************************************************************
      P execSysCmd...
      P                 B
-      *
-     D execSysCmd...
      D                 PI              N
      D  i_cmd                      1024A   value
      D  o_errorCode                               likeds(errorCode_t)
-      *
+
      D isOK            S               N   inz
-      *
+
      D srcCmdStrLen    S             10I 0 inz(%size(i_cmd))
-     D optCtlBlk       DS
-     D  typCmdPrc                    10I 0 inz(0)                               Process like Q
-     D  dbcsData                      1A   inz('0')                             Ignore DBCS
-     D  cmdPmtAct                     1A   inz('0')                             Never prompt c
-     D  cmdStrStx                     1A   inz('0')                             AS/400 Syntax
-     D  msgRtvKey                     4A   inz(*allx'00')
-     D  res_01                        9A   inz(*allx'00')
+     D optCtlBlk       DS                  likeds(cpop0100_t) inz
      D optCtlBlkLen    S             10I 0 inz(%size(optCtlBlk))
      D optCtlBlkFmt    S              8A   inz('CPOP0100')
      D chgCmdStr       S           1024A   inz
      D chgCmdStrAvl    S             10I 0 inz(%size(chgCmdStr))
      D chgCmdStrRet    S             10I 0 inz
-      *
+
      D errorCode       DS                  likeds(errorCode_t) inz
-      * ------------------------------------------------------------- *
-     C                   Clear                   errorCode
-     C                   Eval      errorCode.bytPrv =%size(errorCode)
-      *
-     C                   Call      'QCAPCMD'
-     C                   Parm                    i_cmd
-     C                   Parm                    srcCmdStrLen
-     C                   Parm                    optCtlBlk
-     C                   Parm                    optCtlBlkLen
-     C                   Parm                    optCtlBlkFmt
-     C                   Parm                    chgCmdStr
-     C                   Parm                    chgCmdStrAvl
-     C                   Parm                    chgCmdStrRet
-     C                   Parm                    errorCode
-      *
-     C                   If        errorCode.bytAvl = 0
-     C                   Eval      isOK = *on
-     C                   Else
-     C                   Eval      isOK = *off
-     C                   Endif
-      *
-     C                   Eval      o_errorCode = errorCode
-      *
-     C                   Return    isOK
-      *
-     P execSysCmd...
+       // ------------------------------------------------------------- *
+      /FREE
+
+       Clear optCtlBlk;
+       optCtlBlk.typeCmdPrc = 0;          // Process like QCMDEXC
+       optCtlBlk.DBCS_data = '0';         // Ignore DBCS
+       optCtlBlk.prmtAction = '0';        // Never prompt command
+       optCtlBlk.cmdStrSyntax = '0';      // AS/400 Syntax
+       optCtlBlk.msgRtvKey = *allx'00';
+       optCtlBlk.res_01 = *allx'00';
+
+
+       Clear errorCode;
+       errorCode.bytPrv =%size(errorCode);
+
+       QCAPCMD(i_cmd: srcCmdStrLen: optCtlBlk: optCtlBlkLen: optCtlBlkFmt:
+               chgCmdStr: chgCmdStrAvl: chgCmdStrRet: errorCode);
+
+       If errorCode.bytAvl = 0;
+          isOK = *on;
+       Else;
+          isOK = *off;
+       Endif;
+
+       o_errorCode = errorCode;
+
+       Return isOK;
+
+      /END-FREE
      P                 E
-      *
-      * ***************************************************************
-      *  rtvJrnRcvInf
-      * ***************************************************************
-      *
+
+       // ***************************************************************
+       //  rtvJrnRcvInf
+       // ***************************************************************
+
      P rtvJrnRcvInf...
      P                 B
-      *
-     D rtvJrnRcvInf...
      D                 PI              N
      D  i_jrnRcvNme                  10A   value
      D  i_jrnRcvLib                  10A   value
      D  o_rcvVar                   2048A
-      *
+
      D isOK            S               N   inz
-      *
-      *  Definitions for QjoRetrieveJournalInformation
+
+       //  Definitions for QjoRetrieveJournalInformation
      D rcvVar          S           2048A   inz                                  Receiver var
-     D rcvVarLen       S             10I 0 inz                                  Length receive
-      *
-     D qJrnRcvNme      DS
-     D  jrnRcvNme                    10A   inz                                  Journal Receiv
-     D  jrnRcvLib                    10A   inz                                  Journal Receiv
-      *
-     D format          S              8A   inz                                  Format Name
-      *
+
+     D qJrnRcv         DS                  qualified
+     D  name                         10A   inz                                  Journal Receiv
+     D  lib                          10A   inz                                  Journal Receiv
+
      D errorCode       DS                  likeds(errorCode_t) inz
-      *
+
       /COPY QDLTOLDJRN,USR0001
-      * ------------------------------------------------------------- *
-      *
-     C                   Clear                   rcvVar
-     C                   Eval      rcvVarLen    = %size(rcvVar)
-     C                   Eval      jrnRcvNme    = i_jrnRcvNme
-     C                   Eval      jrnRcvLib    = i_jrnRcvLib
-     C                   Eval      format       = 'RRCV0100'
-      *
-     C                   Clear                   errorCode
-     C                   Eval      errorCode.bytPrv =%size(errorCode)
-      *
-     C                   Callp     qjoRtvJrnRcvInf(rcvVar         :
-     C                                             rcvVarLen      :
-     C                                             qJrnRcvNme     :
-     C                                             format         :
-     C                                             errorCode      )
-      *  If there was no error ...
-     C                   If        errorCode.bytAvl = 0
-      *  ... then
-      *      pass back the retrieved information
-     C                   Eval      o_rcvVar = rcvVar
-     C                   Eval      isOK     = *on
-     C                   Else
-      *  ... else
-      *      signal error condition
-     C                   If        errorCode.excId <> 'CPF9801'
-     C                   Callp     Kill('USR0001': USR0001: %size(USR0001))
-     C                   Endif
-     C                   Eval      o_rcvVar = ' '
-     C                   Eval      isOK     = *off
-     C                   Endif
-      *
-     C                   Return    isOK
-      *
-     P rtvJrnRcvInf...
+       // ------------------------------------------------------------- *
+      /FREE
+
+       Clear rcvVar;
+
+       qJrnRcv.name = i_jrnRcvNme;
+       qJrnRcv.lib = i_jrnRcvLib;
+
+       Clear errorCode;
+       errorCode.bytPrv =%size(errorCode);
+
+       qjoRtvJrnRcvInf(
+          rcvVar: %size(rcvVar): qJrnRcv: 'RRCV0100': errorCode);
+
+       //  If there was no error ...
+       If errorCode.bytAvl = 0;
+          //  ... then
+          //      pass back the retrieved information
+          o_rcvVar = rcvVar;
+          isOK     = *on;
+       Else;
+          //  ... else
+          //      signal error condition
+          If errorCode.excId <> 'CPF9801';
+             Kill('USR0001': USR0001: %size(USR0001));
+          Endif;
+          o_rcvVar = ' ';
+          isOK     = *off;
+       Endif;
+
+       Return isOK;
+
+      /END-FREE
      P                 E
-      *
-      * ***************************************************************
-      *  Retrieve message text.
-      * ***************************************************************
-      *
+
+       // ***************************************************************
+       //  Retrieve message text.
+       // ***************************************************************
      P rtvMsgText...
      P                 B
-      *
-     D rtvMsgText...
      D                 PI           256A          varying
      D  i_errorCode                        const  likeds(errorCode_t)
-     D  i_qMsgF                      20A   const  options(*nopass)
-      *
-     D qMsgF           S             20A
+     D  i_qMsgF                            const  likeds(qObj_t)
+     D                                            options(*nopass)
+
+     D qMsgF           DS                  likeds(i_qMsgF) inz
+
      D errorCode       DS                  likeds(errorCode_t) inz
      D rtvm0100        DS                  likeds(rtvm0100_t ) inz
-      * ------------------------------------------------------------- *
-     C                   If        (%parms() >= 2)
-     C                   Eval      qMsgF = i_qMsgF
-     C                   Else
-     C                   Eval      qMsgF = qCPFMSG
-     C                   Endif
-      *
-     C                   Clear                   errorCode
-     C                   Eval      errorCode.bytPrv =%size(errorCode)
-      *
-     C                   Callp     rtvMsg(rtvm0100: %size(rtvm0100): 'RTVM0100'
-     C                                    : i_errorCode.excID
-     C                                    : qMsgF
-     C                                    : i_errorCode.excDta
-     C                                    : %size(i_errorCode.excDta)
-     C                                    : '*YES': '*NO': errorCode)
-      *
-     C                   If        rtvm0100.lenMsgRet > 0
-     C                   Return    %subst(rtvm0100.data: 1: rtvm0100.lenMsgRet)
-     C                   Endif
-      *
-     C                   Return    ''
-      *
-     P rtvMsgText...
+       // ------------------------------------------------------------- *
+      /FREE
+
+       If (%parms() >= 2);
+          qMsgF = i_qMsgF;
+       Else;
+          qMsgF = qCPFMSG;
+       Endif;
+
+       Clear errorCode;
+       errorCode.bytPrv =%size(errorCode);
+
+       QMHRTVM(rtvm0100: %size(rtvm0100): 'RTVM0100'
+              : i_errorCode.excID: qMsgF: i_errorCode.excDta
+              : %size(i_errorCode.excDta): '*YES': '*NO': errorCode);
+
+       If rtvm0100.lenMsgRet > 0;
+          Return %subst(rtvm0100.data: 1: rtvm0100.lenMsgRet);
+       Endif;
+
+       Return '';
+
+      /END-FREE
      P                 E
-      *
-      * ***************************************************************
-      *  Send INFO message.
-      * ***************************************************************
-      *
+
+       // ***************************************************************
+       //  Send INFO message.
+       // ***************************************************************
      P sndInfoMsg...
      P                 B
-      *
-     D sndInfoMsg...
      D                 PI
      D  i_msgID                       7A   const
      D  i_msgDta                    512A   const  varying
-      *
+
      D errorCode       DS                  likeds(errorCode_t) inz
-      * ------------------------------------------------------------- *
-     C                   Clear                   errorCode
-     C                   Eval      errorCode.bytPrv =%size(errorCode)
-      *
-     C                   Callp     sndPgmMsg(i_msgID        :
-     C                                       qJRNMSG        :
-     C                                       i_msgDta       :
-     C                                       %size(i_msgDta):
-     C                                       '*INFO'        :
-     C                                       '*PGMBDY'      :
-     C                                       1              :
-     C                                       ' '            :
-     C                                       errorCode      )
-      *
-     P sndInfoMsg...
+       // ------------------------------------------------------------- *
+      /FREE
+       Clear errorCode;
+       errorCode.bytPrv =%size(errorCode);
+
+       QMHSNDPM(i_msgID: qJRNMSG: i_msgDta: %size(i_msgDta): '*INFO'
+                 : '*PGMBDY': 1: '' : errorCode);
+
+      /END-FREE
      P                 E
-      *
-      * ***************************************************************
-      *  Send DIAG message.
-      * ***************************************************************
-      *
+
+       // ***************************************************************
+       //  Send DIAG message.
+       // ***************************************************************
      P sndDiagMsg...
      P                 B
-      *
-     D sndDiagMsg...
      D                 PI
      D  i_errorCode                        const  likeds(errorCode_t)
-      *
+
      D errorCode       DS                  likeds(errorCode_t) inz
      D rtvm0100        DS                  likeds(rtvm0100_t ) inz
-      * ------------------------------------------------------------- *
-     C                   Clear                   errorCode
-     C                   Eval      errorCode.bytPrv =%size(errorCode)
-      *
-     C                   Callp     rtvMsg(rtvm0100: %size(rtvm0100): 'RTVM0100'
-     C                                    : i_errorCode.excID
-     C                                    : qCPFMSG
-     C                                    : i_errorCode.excDta
-     C                                    : %size(i_errorCode.excDta)
-     C                                    : '*YES': '*NO': errorCode)
-      *
-     C                   If        rtvm0100.lenMsgRet > 0
-     C                   Callp     Logger_basic(rtvMsgText(i_errorCode))
-     C                   Endif
-      *
-     C                   Callp     sndPgmMsg(i_errorCode.excID        :
-     C                                       qCPFMSG                  :
-     C                                       i_errorCode.excDta       :
-     C                                       %size(i_errorCode.excDta):
-     C                                       '*DIAG'                  :
-     C                                       '*PGMBDY'                :
-     C                                       1                        :
-     C                                       ' '                      :
-     C                                       errorCode                )
-      *
-     P sndDiagMsg...
+       // ------------------------------------------------------------- *
+      /FREE
+
+       Clear errorCode;
+       errorCode.bytPrv =%size(errorCode);
+
+       QMHRTVM(rtvm0100: %size(rtvm0100): 'RTVM0100'
+              : i_errorCode.excID: qCPFMSG: i_errorCode.excDta
+              : %size(i_errorCode.excDta): '*YES': '*NO': errorCode);
+
+       If rtvm0100.lenMsgRet > 0;
+          Logger_basic(rtvMsgText(i_errorCode));
+       Endif;
+
+       QMHSNDPM(i_errorCode.excID: qCPFMSG: i_errorCode.excDta
+                 : %size(i_errorCode.excDta): '*DIAG'
+                 : '*PGMBDY': 1: '': errorCode);
+
+      /END-FREE
      P                 E
-      *
-      * ***************************************************************
-      *  kill
-      * ***************************************************************
-      *
+
+       // ***************************************************************
+       //  kill
+       // ***************************************************************
      P kill...
      P                 B
-      *
-     D kill...
      D                 PI
      D  i_msgID                       7A   const
      D  i_msgDta                   2048A   const options(*varsize)
      D  i_size                       10I 0 const
-      *
+
      D errorCode       DS                  likeds(errorCode_t) inz
-      * ------------------------------------------------------------- *
-      *
-     C                   Callp     Logger_basic('*** ERROR ***')
-      *
-     C                   Callp     Logger_close()
-      *
-     C                   Clear                   errorCode
-     C                   Eval      errorCode.bytPrv =%size(errorCode)
-      *
-     C                   Callp     sndPgmMsg(i_msgID         :
-     C                                       qJRNMSG         :
-     C                                       i_msgDta        :
-     C                                       i_size          :
-     C                                       '*ESCAPE'       :
-     C                                       '*PGMBDY'       :
-     C                                       1               :
-     C                                       ' '             :
-     C                                       errorCode       )
-      *
-     P kill...
+       // ------------------------------------------------------------- *
+      /FREE
+
+       Logger_basic('*** ERROR ***');
+
+       Logger_close();
+
+       Clear errorCode;
+       errorCode.bytPrv =%size(errorCode);
+
+       QMHSNDPM(i_msgID: qJRNMSG: i_msgDta: i_size: '*ESCAPE'
+                 : '*PGMBDY': 1: '': errorCode);
+
+      /END-FREE
      P                 E
-      *
-      * ***************************************************************
-      *  Initializes the API error code to return error information.
-      * ***************************************************************
-      *
+
+       // ***************************************************************
+       //  Initializes the API error code to return error information.
+       // ***************************************************************
      P inzApiErrorCode...
      P                 B
-      *
-     D inzApiErrorCode...
      D                 PI                  likeds(errorCode_t)
-      *
+
      D errorCode       DS                  likeds(errorCode_t) inz
-      * ------------------------------------------------------------- *
-      *
-     C                   Clear                   errorCode
-     C                   Eval      errorCode.bytPrv =%size(errorCode)
-      *
-     C                   Return    errorCode
-      *
-     P inzApiErrorCode...
+       // ------------------------------------------------------------- *
+      /FREE
+
+       Clear errorCode;
+       errorCode.bytPrv =%size(errorCode);
+
+       Return errorCode;
+
+      /END-FREE
      P                 E
-      *
-      * ***************************************************************
-      *  Translates thee1-byte receiver status to a text
-      * ***************************************************************
-      *
+
+       // ***************************************************************
+       //  Translates thee1-byte receiver status to a text
+       // ***************************************************************
      P getReceiverStatus...
      P                 B
-      *
-     D getReceiverStatus...
      D                 PI            64A   varying
      D  i_status                      1A   const
-      * ------------------------------------------------------------- *
-      *
-     C                   Select
-     C                   When      i_status = '1'
-     C                   Return    'attached'
-     C                   When      i_status = '2'
-     C                   Return    'detached / not saved'
-     C                   When      i_status = '3'
-     C                   Return    'detached / saved'
-     C                   When      i_status = '4'
-     C                   Return    'detached / saved and freed'
-     C                   When      i_status = '5'
-     C                   Return    'partial +
-     C                              (see: QjoRtvJrnReceiverInformation API)'
-     C                   When      i_status = '6'
-     C                   Return    'empty / never been attached'
-     C                   Other
-     C                   Return    'Unknown status: ' + i_status
-     C                   Endsl
-      *
-     P getReceiverStatus...
+       // ------------------------------------------------------------- *
+      /FREE
+
+       Select;
+       When i_status = '1';
+          Return 'attached';
+       When i_status = '2';
+          Return 'detached / not saved';
+       When i_status = '3';
+          Return 'detached / saved';
+       When i_status = '4';
+          Return 'detached / saved and freed';
+       When i_status = '5';
+          Return 'partial +
+           (see: QjoRtvJrnReceiverInformation API)';
+       When i_status = '6';
+          Return 'empty / never been attached';
+       Other;
+          Return 'Unknown status: ' + i_status;
+       Endsl;
+
+      /END-FREE
      P                 E
-      *
-      * ***************************************************************
-      *  Return true if the receiver has been saved, else false.
-      * ***************************************************************
-      *
+
+       // ***************************************************************
+       //  Return true if the receiver has been saved, else false.
+       // ***************************************************************
      P receiverWasSaved...
      P                 B
-      *
-     D receiverWasSaved...
      D                 PI              N
      D  i_status                      1A   const
-      * ------------------------------------------------------------- *
-      *
-      *        3:  'detached / saved'
-      *        4:  'detached / saved and freed'
-     C                   if        i_status = '3'  or
-     C                             i_status = '4'
-     C                   Return    *ON
-     C                   Endif
-      *
-     C                   Return    *OFF
-      *
-     P receiverWasSaved...
+       // ------------------------------------------------------------- *
+      /FREE
+
+       //        3:  'detached / saved'
+       //        4:  'detached / saved and freed'
+       if i_status = '3'  or
+          i_status = '4';
+          Return *ON;
+       Endif;
+
+       Return *OFF;
+
+      /END-FREE
      P                 E
-      *
+
 ]]>  </copysrc>
 </mbr>
 <sendmsg  sendmsgid="CPF9897" sendmsgtype = "*STATUS   "><![CDATA[
@@ -3601,286 +3553,257 @@ srclen  =  "00112"
 srccssid=  "00273">
 <copysrc><![CDATA[
       /IF NOT DEFINED(PROTOTYPE)
-      *=====================================================================*
-      *                                                                     *
-      *  Kurzdokumentation :                                                *
-      *                                                                     *
-      *  Bereich . . . : DLTOLDJRNR                                         *
-      *  Objekt  . . . : DLTOLDJRR2                                         *
-      *  Beschreibung  : Tool: DLTOLDJRNR (Delete old Journal Rcv    ) Log  *
-      *  Author  . . . : Thomas Raddatz   <thomas.raddatz@tools400.de>      *
-      *  Datum . . . . : 08.01.2011                                         *
-      *                                                                     *
-      *=====================================================================*
-      *                                                                     *
-      *  This software is free software, you can redistribute it and/or     *
-      *  modify it under the terms of the GNU General Public License (GPL)  *
-      *  as published by the Free Software Foundation.                      *
-      *                                                                     *
-      *  See GNU General Public License for details.                        *
-      *          http://www.opensource.org                                  *
-      *          http://www.opensource.org/licenses/gpl-license.html        *
-      *                                                                     *
-      *=====================================================================*
-      *  History:                                                           *
-      *                                                                     *
-      *  Datum       Name          Änderung                                 *
-      *  ----------  ------------  ---------------------------------------  *
-      *                                                                     *
-      *=====================================================================*
-      * >>PRE-COMPILER<<                                                    *
-      *   >>CRTCMD<< CRTRPGMOD    MODULE(&LI/&OB) +                         *
-      *                           SRCFILE(&SL/&SF) SRCMBR(&SM);             *
-      *   >>IMPORTANT<<                                                     *
-      *     >>PARM<< TRUNCNBR(*NO);                                         *
-      *     >>PARM<< DBGVIEW(*LIST);                                        *
-      *   >>END-IMPORTANT<<                                                 *
-      *   >>EXECUTE<<                                                       *
-      * >>END-PRE-COMPILER<<                                                *
-      *=====================================================================*
+       //=====================================================================*
+       //                                                                     *
+       //  Kurzdokumentation :                                                *
+       //                                                                     *
+       //  Bereich . . . : DLTOLDJRNR                                         *
+       //  Objekt  . . . : DLTOLDJRR2                                         *
+       //  Beschreibung  : Tool: DLTOLDJRNR (Delete old Journal Rcv    ) Log  *
+       //  Author  . . . : Thomas Raddatz   <thomas.raddatz@tools400.de>      *
+       //  Datum . . . . : 08.01.2011                                         *
+       //                                                                     *
+       //=====================================================================*
+       //                                                                     *
+       //  This software is free software, you can redistribute it and/or     *
+       //  modify it under the terms of the GNU General Public License (GPL)  *
+       //  as published by the Free Software Foundation.                      *
+       //                                                                     *
+       //  See GNU General Public License for details.                        *
+       //          http://www.opensource.org                                  *
+       //          http://www.opensource.org/licenses/gpl-license.html        *
+       //                                                                     *
+       //=====================================================================*
+       //  History:                                                           *
+       //                                                                     *
+       //  Datum       Name          Änderung                                 *
+       //  ----------  ------------  ---------------------------------------  *
+       //  08.01.2019  Th.Raddatz    Converted to /free.                      *
+       //                                                                     *
+       //=====================================================================*
+       // >>PRE-COMPILER<<                                                    *
+       //   >>CRTCMD<< CRTRPGMOD    MODULE(&LI/&OB) +                         *
+       //                           SRCFILE(&SL/&SF) SRCMBR(&SM);             *
+       //   >>IMPORTANT<<                                                     *
+       //     >>PARM<< TRUNCNBR(*NO);                                         *
+       //     >>PARM<< DBGVIEW(*LIST);                                        *
+       //   >>END-IMPORTANT<<                                                 *
+       //   >>EXECUTE<<                                                       *
+       // >>END-PRE-COMPILER<<                                                *
+       //=====================================================================*
      H NOMAIN
       /COPY QDLTOLDJRN,H_SPEC
       /COPY QDLTOLDJRN,COPYRIGHT
-      *
+
      FQPRINT    O    F  132        PRINTER oflind(*in70) usropn
      D g_printData     S            115A
-      *
+
       /ENDIF
-      * ***************************************************************
-      *  Exported Prototypes
-      * ***************************************************************
-      *
+       // ***************************************************************
+       //  Exported Prototypes
+       // ***************************************************************
+
      D cLOGGER_NONE    C                   0
      D cLOGGER_BASIC   C                   1
      D cLOGGER_VERBOSE...
      D                 C                   2
-      *
-      *  Opens the printer file for logging.
+
+       //  Opens the printer file for logging.
      D Logger_open...
      D                 PR
      D                                     extproc('Logger_open')
      D  i_logLvl                     10I 0 value
-      *
-      *  Appends a basic message to the printer file.
+
+       //  Appends a basic message to the printer file.
      D Logger_basic...
      D                 PR
      D                                     extproc('Logger_basic')
      D  i_message                   110A   const  varying
      D                                            options(*varsize: *nopass)
-      *
-      *  Appends a verbose message to the printer file.
+
+       //  Appends a verbose message to the printer file.
      D Logger_verbose...
      D                 PR
      D                                     extproc('Logger_verbose')
      D  i_message                   110A   const  varying
      D                                            options(*varsize: *nopass)
-      *
-      *  Closes the printer file.
+
+       //  Closes the printer file.
      D Logger_close...
      D                 PR
      D                                     extproc('Logger_close')
-      *
+
       /IF DEFINED(PROTOTYPE)
       /EOF
       /ENDIF
-      *
-      * ***************************************************************
-      *  External Prototypes
-      * ***************************************************************
-      *
-      *  ... Execute Command (QCMDEXC) API
+
+       // ***************************************************************
+       //  External Prototypes
+       // ***************************************************************
+
+       //  ... Execute Command (QCMDEXC) API
      D QCMDEXC...
      D                 PR                  extpgm('QCMDEXC')
      D  i_cmd                     32702A   const  options(*varsize)
      D  i_length                     15P 5 const
      D  i_IGCprcCtrl                  3A   const  options(*nopass)
-      *
+
      D QCMDEXC_IGC     C                   'IGC'
-      *
-      * ***************************************************************
-      *  Internal Prototypes
-      * ***************************************************************
-      *
-      *  Prints a message.
+
+       // ***************************************************************
+       //  Internal Prototypes
+       // ***************************************************************
+
+       //  Prints a message.
      D printMessage...
      D                 PR
      D                                     extproc('printMessage')
      D  i_message                   110A   const  varying
      D                                            options(*varsize: *nopass)
-      *
-      * ***************************************************************
-      *  Logger status
-      * ***************************************************************
-      *
+
+       // ***************************************************************
+       //  Logger status
+       // ***************************************************************
+
      D g_logger...
      D                 DS                  qualified
      D  logLvl                       10I 0 inz
-      *
-      * ***************************************************************
-      *  O-Spec to print the sample data
-      * ***************************************************************
+
+       // ***************************************************************
+       //  O-Spec to print the sample data
+       // ***************************************************************
      OQPRINT    e            PrintLine
      O                       g_printData        125
-      *
+
      OQPRINT    e            NewPage           6
      O                       g_printData        125
-      *
-      * ***************************************************************
-      *  Opens the printer file for logging.
-      * ***************************************************************
+
+       // ***************************************************************
+       //  Opens the printer file for logging.
+       // ***************************************************************
      P Logger_open...
      P                 B                   export
-      *
-     D Logger_open...
      D                 PI
      D  i_logLvl                     10I 0 value
-      *
+
      D CMD_OVRPRTF     C                   'OVRPRTF FILE(QPRINT) +
      D                                      OVRFLW(60) HOLD(*YES) +
      D                                      USRDTA('''') +
      D                                      SPLFNAME(DLTOLDJRNR) +
      D                                      OVRSCOPE(*CALLLVL)'
-      * ------------------------------------------------------------- *
+       // ------------------------------------------------------------- *
       /FREE
 
-         if (i_logLvl <= cLOGGER_NONE);
-            return;
-         endif;
+       if (i_logLvl <= cLOGGER_NONE);
+          return;
+       endif;
 
-         if (not %open(QPRINT));
-            qcmdexc(CMD_OVRPRTF: %len(CMD_OVRPRTF));
-            open QPRINT;
-            *in70 = *on;
-         endif;
+       if (not %open(QPRINT));
+          qcmdexc(CMD_OVRPRTF: %len(CMD_OVRPRTF));
+          open QPRINT;
+          *in70 = *on;
+       endif;
 
-         g_logger.logLvl = i_logLvl;
-
-         return;
+       g_logger.logLvl = i_logLvl;
 
       /END-FREE
-      *
-     P Logger_open...
      P                 E
-      *
-      * ***************************************************************
-      *  Appends a "basic" message to the printer file.
-      * ***************************************************************
+
+       // ***************************************************************
+       //  Appends a "basic" message to the printer file.
+       // ***************************************************************
      P Logger_basic...
      P                 B                   export
-      *
-     D Logger_basic...
      D                 PI
      D  i_message                   110A   const  varying
      D                                            options(*varsize: *nopass)
-      * ------------------------------------------------------------- *
+       // ------------------------------------------------------------- *
       /FREE
 
-         if (g_logger.logLvl < cLOGGER_BASIC);
-            return;
-         endif;
+       if (g_logger.logLvl < cLOGGER_BASIC);
+          return;
+       endif;
 
-         if (%parms() >= 1);
-            printMessage(i_message);
-         else;
-            printMessage();
-         endif;
-
-         return;
+       if (%parms() >= 1);
+          printMessage(i_message);
+       else;
+          printMessage();
+       endif;
 
       /END-FREE
-      *
-     P Logger_basic...
      P                 E
-      *
-      * ***************************************************************
-      *  Appends a "verbose" message to the printer file.
-      * ***************************************************************
+
+       // ***************************************************************
+       //  Appends a "verbose" message to the printer file.
+       // ***************************************************************
      P Logger_verbose...
      P                 B                   export
-      *
-     D Logger_verbose...
      D                 PI
      D  i_message                   110A   const  varying
      D                                            options(*varsize: *nopass)
-      * ------------------------------------------------------------- *
+       // ------------------------------------------------------------- *
       /FREE
 
-         if (g_logger.logLvl < cLOGGER_VERBOSE);
-            return;
-         endif;
+       if (g_logger.logLvl < cLOGGER_VERBOSE);
+          return;
+       endif;
 
-         if (%parms() >= 1);
-            printMessage(i_message);
-         else;
-            printMessage();
-         endif;
-
-         return;
+       if (%parms() >= 1);
+          printMessage(i_message);
+       else;
+          printMessage();
+       endif;
 
       /END-FREE
-      *
-     P Logger_verbose...
      P                 E
-      *
-      * ***************************************************************
-      *  Closes the printer file.
-      * ***************************************************************
+
+       // ***************************************************************
+       //  Closes the printer file.
+       // ***************************************************************
      P Logger_close...
      P                 B                   export
-      *
-     D Logger_close...
      D                 PI
-      * ------------------------------------------------------------- *
+       // ------------------------------------------------------------- *
       /FREE
 
-         if (%open(QPRINT));
-            close QPRINT;
-         endif;
+       if (%open(QPRINT));
+          close QPRINT;
+       endif;
 
-         clear g_logger;
-
-         return;
+       clear g_logger;
 
       /END-FREE
-      *
-     P Logger_close...
      P                 E
-      *
-      * ***************************************************************
-      *  Prints a message.
-      * ***************************************************************
+
+       // ***************************************************************
+       //  Prints a message.
+       // ***************************************************************
      P printMessage...
      P                 B
-      *
-     D printMessage...
      D                 PI
      D  i_message                   110A   const  varying
      D                                            options(*varsize: *nopass)
-      * ------------------------------------------------------------- *
+       // ------------------------------------------------------------- *
       /FREE
 
-         if (*in70 = *on);
-            except NewPage;
-            *in70 = *off;
-         endif;
+       if (*in70 = *on);
+          except NewPage;
+          *in70 = *off;
+       endif;
 
-         if (%parms() >= 1);
-            g_printData = i_message;
-         else;
-            g_printData = '';
-         endif;
+       if (%parms() >= 1);
+          g_printData = i_message;
+       else;
+          g_printData = '';
+       endif;
 
-         except PrintLine;
+       except PrintLine;
 
-         g_printData = '';
-
-         return;
+       g_printData = '';
 
       /END-FREE
-      *
-     P printMessage...
      P                 E
-      *
+
 ]]>  </copysrc>
 </mbr>
 <sendmsg  sendmsgid="CPF9897" sendmsgtype = "*STATUS   "><![CDATA[
@@ -3906,6 +3829,65 @@ srccssid=  "00273">
      H TIMFMT(*ISO )
      H EXPROPTS(*RESDECPOS)
      H EXTBININT(*YES)
+]]>  </copysrc>
+</mbr>
+<sendmsg  sendmsgid="CPF9897" sendmsgtype = "*STATUS   "><![CDATA[
+Installing SDS  type RPGLE - in progress.
+]]>  </sendmsg>
+<!-- START OF MEMBER  -->
+<mbr
+mbrname =  "SDS       "
+mbrtype =  "RPGLE     "
+mbrtext =  "Program Status Data Structure                     "
+srcfile =  "QDLTOLDJRN"
+srclib  =  "selected  "
+srclen  =  "00112"
+srccssid=  "00273">
+<copysrc><![CDATA[
+      /if not defined(SDS)
+      /define SDS
+
+     d sds            SDS                  qualified
+     d  pgmName                1     10a
+     d  pgmStat               11     15s 0
+     d  prevStat              16     20s 0
+     d  lastSeq               21     28a
+     d  lastSubr              29     36a
+     d  nbrParm               37     39s 0
+     d  excType               40     42a
+     d  excNbr                43     46a
+     d  miInstruction         47     50a
+     d  workArea              51     80a
+      /if defined(SDS_EXTENDED)
+     d  pgmLib                81     90a
+     d  excData               91    170a
+     d  rnx9001Exc           171    174a
+     d  lastFileLong         175    184a
+     d  unused_1             185    190a
+     d  datFmt               191    198a
+     d  year                 199    200s 0
+     d  lastFileShort        201    208a
+     d  fileStat             209    243a
+     d  job                  244    253a
+     d  user                 254    263a
+     d  nbr                  264    269s 0
+     d  startDate            270    275s 0
+     d  runDate              276    281s 0
+     d  runTime              282    287s 0
+     d  compDate             288    293a
+     d  compTime             294    299a
+     d  compLevel            300    303a
+     d  srcFile              304    313a
+     d  srcLib               314    323a
+     d  srcMbr               324    333a
+     d  pgmContProc          334    343a
+     d  modContProc          344    353a
+     d  sourceID1            354    355i 0
+     d  sourceID2            356    357i 0
+     d  currUser             358    367a
+     d  unused_2             368    429a
+      /endif
+      /endif
 ]]>  </copysrc>
 </mbr>
 <sendmsg  sendmsgid="CPF9897" sendmsgtype = "*STATUS   "><![CDATA[

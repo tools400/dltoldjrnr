@@ -38,57 +38,62 @@
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*FILE  ) +
                           XGENCRT(*NO ) XPARAM(*BLANK)
              XMLGENMBR  XMBR(COPYRIGHT ) XMBRATR(RPGLE) +
-                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(UBMSYS  ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*CMD ) +
                           XGENCRT(*NO )
 
              XMLGENMBR  XMBR(DLTOLDJRNG) XMBRATR(CMD  ) +
-                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(UBMSYS  ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*CMD ) +
                           XGENCRT(*NO )
 
              XMLGENMBR  XMBR(DLTOLDJRNE) XMBRATR(CMD  ) +
-                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(UBMSYS  ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*CMD ) +
                           XGENCRT(*NO )
 
              XMLGENMBR  XMBR(DLTOLDJRPG) XMBRATR(PNLGRP) +
-                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(UBMSYS  ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*PNLGRP) +
                           XGENCRT(*NO ) XPARAM(*BLANK)
 
              XMLGENMBR  XMBR(DLTOLDJRPE) XMBRATR(PNLGRP) +
-                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(UBMSYS  ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*PNLGRP) +
                           XGENCRT(*NO ) XPARAM(*BLANK)
 
              XMLGENMBR  XMBR(DLTOLDJRR1) XMBRATR(RPGLE ) +
-                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(UBMSYS  ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*PGM   ) +
                           XGENCRT(*NO ) XPARAM(*BLANK)
 
              XMLGENMBR  XMBR(DLTOLDJRR2) XMBRATR(RPGLE ) +
-                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(UBMSYS  ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*PGM   ) +
                           XGENCRT(*NO ) XPARAM(*BLANK)
 
              XMLGENMBR  XMBR(H_SPEC    ) XMBRATR(RPGLE ) +
-                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(UBMSYS  ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
+                          XTOSRCF(QDLTOLDJRN) XOBJTYPE(*PGM   ) +
+                          XGENCRT(*NO ) XPARAM(*BLANK)
+
+             XMLGENMBR  XMBR(SDS       ) XMBRATR(RPGLE ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*PGM   ) +
                           XGENCRT(*NO ) XPARAM(*BLANK)
 
              XMLGENMBR  XMBR(USR0001   ) XMBRATR(RPGLE ) +
-                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(UBMSYS  ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*PGM   ) +
                           XGENCRT(*NO ) XPARAM(*BLANK)
 
              XMLGENMBR  XMBR(USR0002   ) XMBRATR(RPGLE ) +
-                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(UBMSYS  ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*PGM   ) +
                           XGENCRT(*NO ) XPARAM(*BLANK)
 
              XMLGENMBR  XMBR(USR0003   ) XMBRATR(RPGLE ) +
-                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(UBMSYS  ) +
+                          XFROMSRCF(QDLTOLDJRN) XFROMSRCL(TOOLS400) +
                           XTOSRCF(QDLTOLDJRN) XOBJTYPE(*PGM   ) +
                           XGENCRT(*NO ) XPARAM(*BLANK)
 
