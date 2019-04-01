@@ -241,7 +241,7 @@
      d  res_01                12     20A
 
       /DEFINE SDS_EXTENDED
-      /COPY QCRTMSGDS,SDS
+      /COPY QDLTOLDJRN,SDS
 
        // ***************************************************************
        //              EXECUTABLE CODE STARTS HERE

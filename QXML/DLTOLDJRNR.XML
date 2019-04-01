@@ -51,7 +51,7 @@
       appblddate CDATA #REQUIRED
      >
      ]>
-<upload  appname="DLTOLDJRNR"  appauthor="Thomas Raddatz"  appblddate=" 1/11/2019">
+<upload  appname="DLTOLDJRNR"  appauthor="Thomas Raddatz"  appblddate=" 4/01/2019">
 <install_instructions><![CDATA[
      *----------------------------------------------------------------      ------
      *  1. Upload entire XML to your AS/400 to a source file 112 long, into any mbr
@@ -1678,13 +1678,13 @@ srclen  =  "00112"
 srccssid=  "00273">
 <copysrc><![CDATA[
       /if not defined(COPYRIGHT_DSPEC)
-     H COPYRIGHT('V1.4 - 24.05.2012 - mailto:thomas.raddatz@tools400.de')
+     H COPYRIGHT('V1.4.1 - 01.04.2019 - mailto:thomas.raddatz@tools400.de')
       /eof
       /endif
      D DLTOLDJRNR_VERSION...
-     D                 C                   '1.4'
+     D                 C                   '1.4.1'
      D DLTOLDJRNR_DATE...
-     D                 C                   '24.05.2012'
+     D                 C                   '01.04.2019'
 ]]>  </copysrc>
 </mbr>
 <sendmsg  sendmsgid="CPF9897" sendmsgtype = "*STATUS   "><![CDATA[
@@ -2791,7 +2791,7 @@ srccssid=  "00273">
      d  res_01                12     20A
 
       /DEFINE SDS_EXTENDED
-      /COPY QCRTMSGDS,SDS
+      /COPY QDLTOLDJRN,SDS
 
        // ***************************************************************
        //              EXECUTABLE CODE STARTS HERE
