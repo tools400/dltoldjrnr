@@ -11,7 +11,7 @@
              XMLGENVRS XSRCFILE(QDLTOLDJRN) XSRCLIB(TOOLS400) XSRCMBR(COPYRIGHT)
 
              XMLGENCND  XMSG('Select language (GER, ENG)') +
-                          XVALUES(GER ENG)
+                          XVALUES(GER ENG) XVAR(&LANG)
 
              XMLGENSET  XVAR(&SRCFILE) XVALUE(QDLTOLDJRN)
 
