@@ -23,7 +23,7 @@
      /* =================================================================== */
      /*  History:                                                           */
      /*                                                                     */
-     /*  Datum       Name          Änderung                                 */
+     /*  Datum       Name          Ã„nderung                                 */
      /*  ----------  ------------  ---------------------------------------  */
      /*                                                                     */
      /* =================================================================== */
@@ -79,6 +79,9 @@
              DLTMOD     MODULE(&TOLIB/DLTOLDJRR2)
              MONMSG     MSGID(CPF2105)
 
+             DLTMOD     MODULE(&TOLIB/DLTOLDJRR3)
+             MONMSG     MSGID(CPF2105)
+
              DLTPGM     PGM(&TOLIB/DLTOLDJRNR)
              MONMSG     MSGID(CPF2105)
 
@@ -131,9 +134,18 @@
              DLTSPLF    FILE(DLTOLDJRR2) JOB(*) SPLNBR(*LAST)
              MONMSG     MSGID(CPF0000)
 
+             CRTRPGMOD  MODULE(&TOLIB/DLTOLDJRR3) +
+                          SRCFILE(&SRCLIB/&SRCFILE) SRCMBR(*MODULE) +
+                          DBGVIEW(*LIST) TRUNCNBR(*NO) +
+                          TGTRLS(&TGTRLS)
+             DLTSPLF    FILE(DLTOLDJRR3) JOB(*) SPLNBR(*LAST)
+             MONMSG     MSGID(CPF0000)
+
              CRTPGM     PGM(&TOLIB/DLTOLDJRNR) +
-                          MODULE(&TOLIB/DLTOLDJRR1 +
-                                 &TOLIB/DLTOLDJRR2) TEXT(*ENTMODTXT) +
+                          MODULE(&TOLIB/DLTOLDJRR1  +
+                                 &TOLIB/DLTOLDJRR2  +
+                                 &TOLIB/DLTOLDJRR3) +
+                          TEXT(*ENTMODTXT) +
                           ENTMOD(&TOLIB/DLTOLDJRR1) ACTGRP(*NEW) +
                           DETAIL(*BASIC) USRPRF(*USER) +
                           TGTRLS(&TGTRLS)

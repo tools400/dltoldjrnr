@@ -1,10 +1,12 @@
-      *---------------------------------------------------------------
-      * Datenstruktur für Message-ID : USR0003
-      *
-      * Anzahl gelöschter Journalempfänger &1 von &2.
-      *
-     D USR0003         DS
-     D  USR00031                    010P 0 INZ(*ZEROS )
-     D  USR00032                    010P 0 INZ(*ZEROS )
-     D USR0003#        S              8B 0 INZ(0012)
-      *
+**free
+//---------------------------------------------------------------
+// Datenstruktur fÃ¼r Message-ID : USR0003
+
+// Anzahl gelÃ¶schter JournalempfÃ¤nger &1 von &2.
+
+dcl-ds USR0003;
+  USR00031 packed(010) inz(*zeros);
+  USR00032 packed(010) inz(*zeros);
+end-ds;
+dcl-s USR0003# bindec(8) inz(0012);
+

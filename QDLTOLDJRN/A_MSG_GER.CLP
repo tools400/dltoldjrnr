@@ -1,5 +1,5 @@
      /*-------------------------------------------------------------*/
-     /*   Cmd-ADDMSGD für Message-ID :   USR0001                    */
+     /*   Cmd-ADDMSGD fÃ¼r Message-ID :   USR0001                    */
      /* Programm fehlerhaft beendet. Siehe Joblog.                  */
      /*-------------------------------------------------------------*/
 
@@ -23,8 +23,8 @@
                 /*  -EOF-  */
 
      /*-------------------------------------------------------------*/
-     /*   Cmd-ADDMSGD für Message-ID :   USR0002                    */
-     /* Gelöschter Journalempfänger: &2/&1.                         */
+     /*   Cmd-ADDMSGD fÃ¼r Message-ID :   USR0002                    */
+     /* GelÃ¶schter JournalempfÃ¤nger: &2/&1.                          */
      /*-------------------------------------------------------------*/
 
              RMVMSGD MSGID(USR0002) MSGF(&TOLIB/DLTOLDJRNR)
@@ -34,7 +34,7 @@
                 MSGID(USR0002) +
                 MSGF(&TOLIB/DLTOLDJRNR) +
                 MSG(+
-'Gelöschter Journalempfänger: &2/&1.'                                 +
+'GelÃ¶schter JournalempfÃ¤nger: &2/&1.'                                 +
                 ) +
                 SEV(00) +
                 FMT( +
@@ -46,8 +46,8 @@
                 /*  -EOF-  */
 
      /*-------------------------------------------------------------*/
-     /*   Cmd-ADDMSGD für Message-ID :   USR0003                    */
-     /* Anzahl gelöschter Journalempfänger &1 von &2.               */
+     /*   Cmd-ADDMSGD fÃ¼r Message-ID :   USR0003                    */
+     /* Anzahl gelÃ¶schter JournalempfÃ¤nger &1 von &2.               */
      /*-------------------------------------------------------------*/
 
              RMVMSGD MSGID(USR0003) MSGF(&TOLIB/DLTOLDJRNR)
@@ -57,7 +57,7 @@
                 MSGID(USR0003) +
                 MSGF(&TOLIB/DLTOLDJRNR) +
                 MSG(+
-'Anzahl gelöschter Journalempfänger &1 von &2.'                       +
+'Anzahl gelÃ¶schter JournalempfÃ¤nger &1 von &2.'                       +
                 ) +
                 SEV(00) +
                 FMT( +

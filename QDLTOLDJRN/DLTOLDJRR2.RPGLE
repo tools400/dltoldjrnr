@@ -1,252 +1,192 @@
-      /IF NOT DEFINED(PROTOTYPE)
-       //=====================================================================*
-       //                                                                     *
-       //  Kurzdokumentation :                                                *
-       //                                                                     *
-       //  Bereich . . . : DLTOLDJRNR                                         *
-       //  Objekt  . . . : DLTOLDJRR2                                         *
-       //  Beschreibung  : Tool: DLTOLDJRNR (Delete old Journal Rcv    ) Log  *
-       //  Author  . . . : Thomas Raddatz   <thomas.raddatz@tools400.de>      *
-       //  Datum . . . . : 08.01.2011                                         *
-       //                                                                     *
-       //=====================================================================*
-       //                                                                     *
-       //  This software is free software, you can redistribute it and/or     *
-       //  modify it under the terms of the GNU General Public License (GPL)  *
-       //  as published by the Free Software Foundation.                      *
-       //                                                                     *
-       //  See GNU General Public License for details.                        *
-       //          http://www.opensource.org                                  *
-       //          http://www.opensource.org/licenses/gpl-license.html        *
-       //                                                                     *
-       //=====================================================================*
-       //  History:                                                           *
-       //                                                                     *
-       //  Datum       Name          Änderung                                 *
-       //  ----------  ------------  ---------------------------------------  *
-       //  08.01.2019  Th.Raddatz    Converted to /free.                      *
-       //                                                                     *
-       //=====================================================================*
-       // >>PRE-COMPILER<<                                                    *
-       //   >>CRTCMD<< CRTRPGMOD    MODULE(&LI/&OB) +                         *
-       //                           SRCFILE(&SL/&SF) SRCMBR(&SM);             *
-       //   >>IMPORTANT<<                                                     *
-       //     >>PARM<< TRUNCNBR(*NO);                                         *
-       //     >>PARM<< DBGVIEW(*LIST);                                        *
-       //   >>END-IMPORTANT<<                                                 *
-       //   >>EXECUTE<<                                                       *
-       // >>END-PRE-COMPILER<<                                                *
-       //=====================================================================*
-     H NOMAIN
-      /COPY QDLTOLDJRN,H_SPEC
-      /COPY QDLTOLDJRN,COPYRIGHT
+**free
+/if NOT defined(PROTOTYPE)
+//=====================================================================*
+//                                                                     *
+//  Kurzdokumentation :                                                *
+//                                                                     *
+//  Bereich . . . : DLTOLDJRNR                                         *
+//  Objekt  . . . : DLTOLDJRR2                                         *
+//  Beschreibung  : Tool: DLTOLDJRNR (Delete old Journal Rcv    ) Log  *
+//  Author  . . . : Thomas Raddatz   <thomas.raddatz@tools400.de>      *
+//  Datum . . . . : 08.01.2011                                         *
+//                                                                     *
+//=====================================================================*
+//                                                                     *
+//  This software is free software, you can redistribute it and/or     *
+//  modify it under the terms of the GNU General Public License (GPL)  *
+//  as published by the Free Software Foundation.                      *
+//                                                                     *
+//  See GNU General Public License for details.                        *
+//          http://www.opensource.org                                  *
+//          http://www.opensource.org/licenses/gpl-license.html        *
+//                                                                     *
+//=====================================================================*
+//  History:                                                           *
+//                                                                     *
+//  Datum       Name          Ã„nderung                                 *
+//  ----------  ------------  ---------------------------------------  *
+//  08.01.2019  Th.Raddatz    Converted to /free.                      *
+//  31.05.2026  Th.Raddatz    Extracted spooled file printer to        *
+//                            module DLTOLDJRR3.
+//                                                                     *
+//=====================================================================*
+// >>PRE-COMPILER<<                                                    *
+//   >>CRTCMD<< CRTRPGMOD    MODULE(&LI/&OB) +                         *
+//                           SRCFILE(&SL/&SF) SRCMBR(&SM);             *
+//   >>IMPORTANT<<                                                     *
+//     >>PARM<< TRUNCNBR(*NO);                                         *
+//     >>PARM<< DBGVIEW(*LIST);                                        *
+//     >>PARM<< OPTION(*EVENTF);                                       *
+//   >>END-IMPORTANT<<                                                 *
+//   >>EXECUTE<<                                                       *
+// >>END-PRE-COMPILER<<                                                *
+//=====================================================================*
+ctl-opt nomain;
+/copy QDLTOLDJRN,H_SPEC
+/copy QDLTOLDJRN,COPYRIGHT
 
-     FQPRINT    O    F  132        PRINTER oflind(*in70) usropn
-     D g_printData     S            115A
+/endif
+// ***************************************************************
+//  Exported Prototypes
+// ***************************************************************
 
-      /ENDIF
-       // ***************************************************************
-       //  Exported Prototypes
-       // ***************************************************************
+dcl-c cLOGGER_NONE 0;
+dcl-c cLOGGER_BASIC 1;
+dcl-c cLOGGER_VERBOSE 2;
 
-     D cLOGGER_NONE    C                   0
-     D cLOGGER_BASIC   C                   1
-     D cLOGGER_VERBOSE...
-     D                 C                   2
+//  Opens the printer file for logging.
+dcl-pr Logger_open extproc('Logger_open');
+  i_logLvl int(10) value;
+end-pr;
 
-       //  Opens the printer file for logging.
-     D Logger_open...
-     D                 PR
-     D                                     extproc('Logger_open')
-     D  i_logLvl                     10I 0 value
+//  Appends a basic message to the printer file.
+dcl-pr Logger_basic extproc('Logger_basic');
+  i_message varchar(110) options(*varsize: *nopass) const;
+end-pr;
 
-       //  Appends a basic message to the printer file.
-     D Logger_basic...
-     D                 PR
-     D                                     extproc('Logger_basic')
-     D  i_message                   110A   const  varying
-     D                                            options(*varsize: *nopass)
+//  Appends a verbose message to the printer file.
+dcl-pr Logger_verbose extproc('Logger_verbose');
+  i_message varchar(110) options(*varsize: *nopass) const;
+end-pr;
 
-       //  Appends a verbose message to the printer file.
-     D Logger_verbose...
-     D                 PR
-     D                                     extproc('Logger_verbose')
-     D  i_message                   110A   const  varying
-     D                                            options(*varsize: *nopass)
+//  Closes the printer file.
+dcl-pr Logger_close extproc('Logger_close');
+end-pr;
 
-       //  Closes the printer file.
-     D Logger_close...
-     D                 PR
-     D                                     extproc('Logger_close')
+/if defined(PROTOTYPE)
+/eof
+/endif
 
-      /IF DEFINED(PROTOTYPE)
-      /EOF
-      /ENDIF
+// ***************************************************************
+//  External Prototypes
+// ***************************************************************
 
-       // ***************************************************************
-       //  External Prototypes
-       // ***************************************************************
+/define PROTOTYPE
+/copy QDLTOLDJRN,DLTOLDJRR3
+/undefine PROTOTYPE
 
-       //  ... Execute Command (QCMDEXC) API
-     D QCMDEXC...
-     D                 PR                  extpgm('QCMDEXC')
-     D  i_cmd                     32702A   const  options(*varsize)
-     D  i_length                     15P 5 const
-     D  i_IGCprcCtrl                  3A   const  options(*nopass)
+// ***************************************************************
+//  Logger status
+// ***************************************************************
 
-     D QCMDEXC_IGC     C                   'IGC'
+dcl-ds g_logger qualified;
+  logLvl int(10) inz;
+end-ds;
 
-       // ***************************************************************
-       //  Internal Prototypes
-       // ***************************************************************
+// ***************************************************************
+//  Opens the printer file for logging.
+// ***************************************************************
+dcl-proc Logger_open export;
+  dcl-pi *n;
+    i_logLvl int(10) value;
+  end-pi;
 
-       //  Prints a message.
-     D printMessage...
-     D                 PR
-     D                                     extproc('printMessage')
-     D  i_message                   110A   const  varying
-     D                                            options(*varsize: *nopass)
+  // Page size: DIN A4
+  dcl-s cmd_ovrPrtF varchar(250);
+  // ------------------------------------------------------------- *
 
-       // ***************************************************************
-       //  Logger status
-       // ***************************************************************
+  if (i_logLvl <= cLOGGER_NONE);
+    return;
+  endif;
 
-     D g_logger...
-     D                 DS                  qualified
-     D  logLvl                       10I 0 inz
+  SpooledFile_openForDinA4Pages();
 
-       // ***************************************************************
-       //  O-Spec to print the sample data
-       // ***************************************************************
-     OQPRINT    e            PrintLine
-     O                       g_printData        125
+  g_logger.logLvl = i_logLvl;
 
-     OQPRINT    e            NewPage           6
-     O                       g_printData        125
+end-proc;
 
-       // ***************************************************************
-       //  Opens the printer file for logging.
-       // ***************************************************************
-     P Logger_open...
-     P                 B                   export
-     D                 PI
-     D  i_logLvl                     10I 0 value
+// ***************************************************************
+//  Appends a "basic" message to the printer file.
+// ***************************************************************
+dcl-proc Logger_basic export;
+  dcl-pi *n;
+    i_message varchar(110) options(*varsize: *nopass) const;
+  end-pi;
+  // ------------------------------------------------------------- *
 
-     D CMD_OVRPRTF     C                   'OVRPRTF FILE(QPRINT) +
-     D                                      OVRFLW(60) HOLD(*YES) +
-     D                                      USRDTA('''') +
-     D                                      SPLFNAME(DLTOLDJRNR) +
-     D                                      OVRSCOPE(*CALLLVL)'
-       // ------------------------------------------------------------- *
-      /FREE
+  if (g_logger.logLvl < cLOGGER_BASIC);
+    return;
+  endif;
 
-       if (i_logLvl <= cLOGGER_NONE);
-          return;
-       endif;
+  if (%parms() >= 1);
+    appendMessage(i_message);
+  else;
+    appendMessage('');
+  endif;
 
-       if (not %open(QPRINT));
-          qcmdexc(CMD_OVRPRTF: %len(CMD_OVRPRTF));
-          open QPRINT;
-          *in70 = *on;
-       endif;
+end-proc;
 
-       g_logger.logLvl = i_logLvl;
+// ***************************************************************
+//  Appends a "verbose" message to the printer file.
+// ***************************************************************
+dcl-proc Logger_verbose export;
+  dcl-pi *n;
+    i_message varchar(110) options(*varsize: *nopass) const;
+  end-pi;
+  // ------------------------------------------------------------- *
 
-      /END-FREE
-     P                 E
+  if (g_logger.logLvl < cLOGGER_VERBOSE);
+    return;
+  endif;
 
-       // ***************************************************************
-       //  Appends a "basic" message to the printer file.
-       // ***************************************************************
-     P Logger_basic...
-     P                 B                   export
-     D                 PI
-     D  i_message                   110A   const  varying
-     D                                            options(*varsize: *nopass)
-       // ------------------------------------------------------------- *
-      /FREE
+  if (%parms() >= 1);
+    appendMessage(i_message);
+  else;
+    appendMessage('');
+  endif;
 
-       if (g_logger.logLvl < cLOGGER_BASIC);
-          return;
-       endif;
+end-proc;
 
-       if (%parms() >= 1);
-          printMessage(i_message);
-       else;
-          printMessage();
-       endif;
+// ***************************************************************
+//  Closes the printer file.
+// ***************************************************************
+dcl-proc Logger_close export;
+  dcl-pi *n;
+  end-pi;
+  // ------------------------------------------------------------- *
 
-      /END-FREE
-     P                 E
+  if (SpooledFile_isOpen());
+    SpooledFile_close();
+  endif;
 
-       // ***************************************************************
-       //  Appends a "verbose" message to the printer file.
-       // ***************************************************************
-     P Logger_verbose...
-     P                 B                   export
-     D                 PI
-     D  i_message                   110A   const  varying
-     D                                            options(*varsize: *nopass)
-       // ------------------------------------------------------------- *
-      /FREE
+  clear g_logger;
 
-       if (g_logger.logLvl < cLOGGER_VERBOSE);
-          return;
-       endif;
+end-proc;
 
-       if (%parms() >= 1);
-          printMessage(i_message);
-       else;
-          printMessage();
-       endif;
+// ***************************************************************
+//  Appends a message to the log output.
+// ***************************************************************
+dcl-proc appendMessage export;
+  dcl-pi *n extproc(*dclcase);
+    i_message varchar(110) options(*varsize: *nopass) const;
+  end-pi;
+  // ------------------------------------------------------------- *
 
-      /END-FREE
-     P                 E
+  if (%parms() >= 1);
+    SpooledFile_print(i_message);
+  else;
+    SpooledFile_print('');
+  endif;
 
-       // ***************************************************************
-       //  Closes the printer file.
-       // ***************************************************************
-     P Logger_close...
-     P                 B                   export
-     D                 PI
-       // ------------------------------------------------------------- *
-      /FREE
-
-       if (%open(QPRINT));
-          close QPRINT;
-       endif;
-
-       clear g_logger;
-
-      /END-FREE
-     P                 E
-
-       // ***************************************************************
-       //  Prints a message.
-       // ***************************************************************
-     P printMessage...
-     P                 B
-     D                 PI
-     D  i_message                   110A   const  varying
-     D                                            options(*varsize: *nopass)
-       // ------------------------------------------------------------- *
-      /FREE
-
-       if (*in70 = *on);
-          except NewPage;
-          *in70 = *off;
-       endif;
-
-       if (%parms() >= 1);
-          g_printData = i_message;
-       else;
-          g_printData = '';
-       endif;
-
-       except PrintLine;
-
-       g_printData = '';
-
-      /END-FREE
-     P                 E
+end-proc;
 

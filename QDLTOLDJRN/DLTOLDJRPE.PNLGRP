@@ -21,7 +21,7 @@
 .*=====================================================================*
 .*  History:                                                           *
 .*                                                                     *
-.*  Datum       Name          Änderung                                 *
+.*  Datum       Name          Ã„nderung                                 *
 .*  ----------  ------------  ---------------------------------------  *
 .*                                                                     *
 .*=====================================================================*
@@ -45,7 +45,7 @@
 :IMHELP name='DLTOLDJRNR/LOGLVL    '.
 :EHELP.
 .*--------------------------------------------------------------------
-.* Hilfetext für den Befehl
+.* Hilfetext fÃ¼r den Befehl
 .*--------------------------------------------------------------------
 :HELP NAME='DLTOLDJRNR'.
 Delete old Journal Receiver (DLTOLDJRNR) - Help
@@ -57,7 +57,7 @@ its age is older or egal the age specified.
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilftext für Schlüsselwort JRN
+.* Hilftext fÃ¼r SchlÃ¼sselwort JRN
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/JRN       '.
 Journal - Help
@@ -91,7 +91,7 @@ job, the QGPL library is used.
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilfetext für Schlüsselwort DETACH
+.* Hilfetext fÃ¼r SchlÃ¼sselwort DETACH
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/DETACH    '.
 Detach curr. journal reveicer - Help
@@ -113,7 +113,7 @@ a new one.
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilfetext für Schlüsselwort SAVOPT
+.* Hilfetext fÃ¼r SchlÃ¼sselwort SAVOPT
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/SAVOPT    '.
 Save option - Help
@@ -134,7 +134,7 @@ deleted.
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilfetext für Schlüsselwort DLTOPT
+.* Hilfetext fÃ¼r SchlÃ¼sselwort DLTOPT
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/DLTOPT    '.
 Option - Help
@@ -189,7 +189,7 @@ this journal receiver can be deleted.
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilfetext für Schlüsselwort AGE
+.* Hilfetext fÃ¼r SchlÃ¼sselwort AGE
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/AGE       '.
 Agre (days) - Help
@@ -208,7 +208,7 @@ have until it is considered to be old.
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilfetext für Schlüsselwort LOGLVL
+.* Hilfetext fÃ¼r SchlÃ¼sselwort LOGLVL
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/LOGLVL    '.
 Log level - Help

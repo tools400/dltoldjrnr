@@ -21,7 +21,7 @@
 .*=====================================================================*
 .*  History:                                                           *
 .*                                                                     *
-.*  Datum       Name          Änderung                                 *
+.*  Datum       Name          Ã„nderung                                 *
 .*  ----------  ------------  ---------------------------------------  *
 .*                                                                     *
 .*=====================================================================*
@@ -45,25 +45,25 @@
 :IMHELP name='DLTOLDJRNR/LOGLVL    '.
 :EHELP.
 .*--------------------------------------------------------------------
-.* Hilfetext für den Befehl
+.* Hilfetext fÃ¼r den Befehl
 .*--------------------------------------------------------------------
 :HELP NAME='DLTOLDJRNR'.
-Alte Journalempfänger löschen (DLTOLDJRNR) - Hilfe
+Alte JournalempfÃ¤nger lÃ¶schen (DLTOLDJRNR) - Hilfe
 :P.
-Der Befehl DLTOLDJRNR löscht alle veralteten Journalempfänger
+Der Befehl DLTOLDJRNR lÃ¶scht alle veralteten JournalempfÃ¤nger
 eines angegeben Journals.
 .*
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilfetext für Schlüsselwort JRN
+.* Hilfetext fÃ¼r SchlÃ¼sselwort JRN
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/JRN       '.
 Journal - Hilfe
 :XH3.Journal (JRN)
 :P.
-Name des Journals angeben, dessen veralteten Journalempfänger
-gelöscht werden sollen.
+Name des Journals angeben, dessen veralteten JournalempfÃ¤nger
+gelÃ¶scht werden sollen.
 .*
 :IMHELP name='COM/REQPARM'.
 .*
@@ -72,75 +72,75 @@ gelöscht werden sollen.
 :PD.Name des Journals.
 :EPARML.
 :P.
-Mögliche Bibliothekswerte sind:
+MÃ¶gliche Bibliothekswerte sind:
 .*
 :PARML.
 :PT.:PK DEF.*LIBL:EPK.
-:PD.Journal wird über die Bibliotheksliste gesucht.
+:PD.Journal wird Ã¼ber die Bibliotheksliste gesucht.
 :PT.:PV.*CURLIB:EPV.
 :PD.Journal befindet sich in der aktuellen Bibliothek des Jobs.
 :PT.:PV.Bibliothek:EPV.
-:PD.Name der Bibliothek, welche das Journal enthält.
+:PD.Name der Bibliothek, welche das Journal enthÃ¤lt.
 :EPARML.
 .*
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilfetext für Schlüsselwort DETACH
+.* Hilfetext fÃ¼r SchlÃ¼sselwort DETACH
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/DETACH    '.
-Akt. Journalempfänger abhängen - Hilfe
-:XH3.Akt. Journalempfänger abhängen (DETACH)
+Akt. JournalempfÃ¤nger abhÃ¤ngen - Hilfe
+:XH3.Akt. JournalempfÃ¤nger abhÃ¤ngen (DETACH)
 :P.
-Angeben, ob der aktuelle Journalempfänger abgehangen werden soll.
+Angeben, ob der aktuelle JournalempfÃ¤nger abgehangen werden soll.
 .*
 :IMHELP name='COM/OPTPARM'.
 .*
 :PARML.
 :PT.:PK DEF.*NO:EPK.
-:PD.Der aktuelle Journalempfänger wird nicht abgehangen.
+:PD.Der aktuelle JournalempfÃ¤nger wird nicht abgehangen.
 :PT.:PV.*YES:EPV.
-:PD.Der aktuelle Journalempfänger wird abgehangen.
+:PD.Der aktuelle JournalempfÃ¤nger wird abgehangen.
 :EPARML.
 .*
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilfetext für Schlüsselwort SAVOPT
+.* Hilfetext fÃ¼r SchlÃ¼sselwort SAVOPT
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/SAVOPT    '.
 Sicherungsoption - Hilfe
 :XH3.Sicherungsoption (SAVOPT)
 :P.
-Angeben, ob nur die gesicherten Journalempfänger gelöscht werden
+Angeben, ob nur die gesicherten JournalempfÃ¤nger gelÃ¶scht werden
 sollen.
 .*
 :IMHELP name='COM/OPTPARM'.
 .*
 :PARML.
 :PT.:PK DEF.*SAVEDONLY:EPK.
-:PD.Es werden nur die gesicherten Journalempfänger gelöscht.
+:PD.Es werden nur die gesicherten JournalempfÃ¤nger gelÃ¶scht.
 :PT.:PV.*ALL:EPV.
-:PD.Es werden alle Journalempfänger gelöscht.
+:PD.Es werden alle JournalempfÃ¤nger gelÃ¶scht.
 :EPARML.
 .*
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilfetext für Schlüsselwort DLTOPT
+.* Hilfetext fÃ¼r SchlÃ¼sselwort DLTOPT
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/DLTOPT    '.
 Option - Hilfe
 :XH3.Option (DLTOPT)
 :P.
-Angeben, ob zusätzliche Prüfungen durchgeführt werden sollen, bevor
-der Journalempfänger gelöscht wird.
+Angeben, ob zusÃ¤tzliche PrÃ¼fungen durchgefÃ¼hrt werden sollen, bevor
+der JournalempfÃ¤nger gelÃ¶scht wird.
 .*
 :P.
-Die Angaben zu den unten aufgeführen Sonderwerten (*NONE, *IGNTGTRCV,
+Die Angaben zu den unten aufgefÃ¼hren Sonderwerten (*NONE, *IGNTGTRCV,
 *IGNINQMSG und *IGNEXITPGM) wurden der Online-Hilfe des Befehls
-DLTJRNRCV V4R4 entnommen und müssen nicht zwangsläufig mit
-den Nachfolgeversionen des OS/400 übereinstimmen.
+DLTJRNRCV V4R4 entnommen und mÃ¼ssen nicht zwangslÃ¤ufig mit
+den Nachfolgeversionen des OS/400 Ã¼bereinstimmen.
 .*
 :P.
 Im Zweifelsfall sollte die aktuelle Online-Hilfe des Befehls
@@ -150,48 +150,48 @@ DLTJRNRCV durchgesehen werden.
 .*
 :PARML.
 :PT.:PK DEF.*NONE:EPK.
-:PD.Das Löschen des Journalempfängers soll versucht werden, ohne die
-Schutzprüfungen zu ignorieren, die vor dem Löschen eines
-Journalempfängers durchgeführt werden.
+:PD.Das lÃ¶schen des JournalempfÃ¤ngers soll versucht werden, ohne die
+SchutzPrÃ¼fungen zu ignorieren, die vor dem lÃ¶schen eines
+JournalempfÃ¤ngers durchgefÃ¼hrt werden.
 .*
 :PT.:PV.*IGNTGTRCV:EPV.
-:PD.Das System überprüft nicht, ob alle diesem Journal zugeordneten
+:PD.Das System Ã¼berprÃ¼ft nicht, ob alle diesem Journal zugeordneten
 fernen Journale, die sich direkt hinter diesem Journal auf einem
-Zielsystem befinden, vollständige Kopien dieses Journalempfängers
-haben. Die Löschoperation wird durchgeführt, auch wenn eines dieser
-fernen Journale noch keine vollständige Kopie hat. Diese
-Schutzmaßnahme für einen Journalempfänger fängt an, wenn das ferne
-Journal mit der API QjoAddRemoteJournal hinzugefügt wurde und endet,
+Zielsystem befinden, vollstÃ¤ndige Kopien dieses JournalempfÃ¤ngers
+haben. Die lÃ¶schoperation wird durchgefÃ¼hrt, auch wenn eines dieser
+fernen Journale noch keine vollstÃ¤ndige Kopie hat. Diese
+SchutzmaÃŸnahme fÃ¼r einen JournalempfÃ¤nger fÃ¤ngt an, wenn das ferne
+Journal mit der API QjoAddRemoteJournal hinzugefÃ¼gt wurde und endet,
 wenn das Journal mit der API QjoRemoveRemoteJournal entfernt oder
-wenn es gelöscht wird. Weitere Informationen über APIs enthält das
+wenn es gelÃ¶scht wird. Weitere Informationen Ã¼ber APIs enthÃ¤lt das
 Handbuch System API Reference, IBM Form SC41-5801.
 .*
 :PT.:PV.*IGNINQMSG:EPV.
 :PD.Anfragenachricht ignorieren. Anfragenachricht CPA7025 wird nicht
-angezeigt, auch wenn dieser Empfänger noch nicht vollständig
-gesichert wurde (beispielsweise wenn eine Sicherung durchgeführt
-wurde, nachdem der Empfänger abgehängt wurde). Die Anfragenachricht
-CPA705E wird ebenfalls nicht angezeigt, auch wenn der Empfänger an
-ein fernes Journal angehängt ist. Die Löschoperation wird
-durchgeführt.
+angezeigt, auch wenn dieser EmpfÃ¤nger noch nicht vollstÃ¤ndig
+gesichert wurde (beispielsweise wenn eine Sicherung durchgefÃ¼hrt
+wurde, nachdem der EmpfÃ¤nger abgehÃ¤ngt wurde). Die Anfragenachricht
+CPA705E wird ebenfalls nicht angezeigt, auch wenn der EmpfÃ¤nger an
+ein fernes Journal angehÃ¤ngt ist. Die lÃ¶schoperation wird
+durchgefÃ¼hrt.
 .*
 :PT.:PV.*IGNEXITPGM:EPV.
 :PD.Benutzerausgangsprogramme ignorieren. Benutzerausgangsprogramme, die
-für Ausgangspunkt QIBM_QJO_DLT_JRNRCV registriert sind, werden nicht
+fÃ¼r Ausgangspunkt QIBM_QJO_DLT_JRNRCV registriert sind, werden nicht
 aufgerufen und beeinflussen nicht die Entscheidung, ob dieser
-Journalempfänger gelöscht werden kann.
+JournalempfÃ¤nger gelÃ¶scht werden kann.
 :EPARML.
 .*
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilfetext für Schlüsselwort AGE
+.* Hilfetext fÃ¼r SchlÃ¼sselwort AGE
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/AGE       '.
 Alter in Tagen - Hilfe
 :XH3.Alter in Tagen (AGE)
 :P.
-Angeben, Alter in Tagen ab dem die Journalempfänger gelöscht
+Angeben, Alter in Tagen ab dem die JournalempfÃ¤nger gelÃ¶scht
 werden sollen.
 .*
 :IMHELP name='COM/REQPARM'.
@@ -204,13 +204,13 @@ werden sollen.
 :EHELP.
 .*
 .*--------------------------------------------------------------------
-.* Hilfetext für Schlüsselwort LOGLVL
+.* Hilfetext fÃ¼r SchlÃ¼sselwort LOGLVL
 .*--------------------------------------------------------------------
 :HELP name='DLTOLDJRNR/LOGLVL    '.
 Log level - Hilfe
 :XH3.Log Level (LOGLVL)
 :P.
-Gibt an, wie ausführlich die Log Ausgabe sein soll.
+Gibt an, wie ausfÃ¼hrlich die Log Ausgabe sein soll.
 .*
 :IMHELP name='COM/OPTPARM'.
 .*
@@ -256,7 +256,7 @@ Dieser Parameter ist optional.
 .*=====================================
 :HELP NAME='COM/VALUES'.
 :P.
-Mögliche Werte sind:
+MÃ¶gliche Werte sind:
 :EHELP.
 .*
 :EPNLGRP.

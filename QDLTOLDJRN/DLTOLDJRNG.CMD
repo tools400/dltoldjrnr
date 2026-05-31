@@ -21,7 +21,7 @@
 /* =================================================================== */
 /*  History:                                                           */
 /*                                                                     */
-/*  Datum       Name          Änderung                                 */
+/*  Datum       Name          Ã„nderung                                 */
 /*  ----------  ------------  ---------------------------------------  */
 /*                                                                     */
 /* =================================================================== */
@@ -42,7 +42,7 @@
 /* >>END-PRE-COMPILER<<                                                */
 /* =================================================================== */
 
-            CMD PROMPT('Alte Journalempfänger löschen')
+            CMD PROMPT('Alte JournalempfÃ¤nger lÃ¶schen')
 
       /* ------------------------------------------------------------ */
       /* Parameters for journal information                           */
@@ -76,7 +76,7 @@
                         (*NO  )  +
                         (*YES )) +
                  MIN(0) +
-                 PROMPT('Akt. Journalempfänger abhängen' 2)
+                 PROMPT('Akt. JournalempfÃ¤nger abhÃ¤ngen' 2)
 
             PARM KWD(SAVOPT) +
                  TYPE(*CHAR) +

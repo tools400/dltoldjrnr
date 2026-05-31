@@ -1,8 +1,7 @@
-      /if not defined(COPYRIGHT_DSPEC)
-     H COPYRIGHT('V1.4.2 - 02.04.2019 - mailto:thomas.raddatz@tools400.de')
-      /eof
-      /endif
-     D DLTOLDJRNR_VERSION...
-     D                 C                   '1.4.2'
-     D DLTOLDJRNR_DATE...
-     D                 C                   '02.04.2019'
+**free
+/if not defined(COPYRIGHT_DSPEC)
+ctl-opt copyright('V1.5 - 29.05.2026 - mailto: thomas.raddatz@tools400.de');
+/eof
+/endif
+dcl-c DLTOLDJRNR_VERSION '1.5';
+dcl-c DLTOLDJRNR_DATE '29.05.2026';
