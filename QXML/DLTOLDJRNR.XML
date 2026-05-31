@@ -3813,15 +3813,7 @@ dcl-ds g_printStatus qualified;
   overflow ind inz(*off);
 end-ds;
 
-dcl-ds g_printConfig qualified;
-  leftBorder   int(5) inz(10);
-  topMargin    int(5) inz(5);
-  pageLength   int(5) inz(70);
-  pageWidth    int(5) inz(80);
-  pageOverflow int(5) inz(66);
-  cpi          int(5) inz(10); // 80 characters per line
-  lpi          int(5) inz(6); // 70 lines on DIN A4 page
-end-ds;
+dcl-ds g_printConfig likeds(spooledFileConfig_t);
 
 /endif
 // ***************************************************************
@@ -3831,6 +3823,7 @@ end-ds;
 // Spooled file configuration for DIN A4 pages.
 dcl-ds spooledFileConfig_t qualified template;
   leftBorder   int(5) inz(10);
+  rightBorder  int(5) inz(5);
   topMargin    int(5) inz(5);
   pageLength   int(5) inz(70);
   pageWidth    int(5) inz(80);
@@ -3875,6 +3868,7 @@ dcl-proc SpooledFile_openForDinA4Pages export;
   dcl-ds spooledFileConfig_A4 likeds(spooledFileConfig_t);
 
   spooledFileConfig_A4.leftBorder = 10;
+  spooledFileConfig_A4.rightBorder = 5;
   spooledFileConfig_A4.topMargin = 5;
   spooledFileConfig_A4.pageLength = 70;
   spooledFileConfig_A4.pageWidth = 80;
